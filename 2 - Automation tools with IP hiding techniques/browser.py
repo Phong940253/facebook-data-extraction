@@ -1,7 +1,7 @@
 from helium import *
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver import FirefoxOptions
-from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
+from fp.fp import FreeProxy
 
 import os
 import psutil
@@ -21,9 +21,10 @@ BROWSER_OPTIONS = type('Enum', (), {
     'FIREFOX': FirefoxOptions()
 })
 
-request_proxy = RequestProxy()
-request_proxy.set_logger_level(40)
-proxies = request_proxy.get_proxy_list()
+# request_proxy = RequestProxy()
+# request_proxy.set_logger_level(40)
+# proxies = request_proxy.get_proxy_list()
+proxies = FreeProxy().get()
 
 def hidden(browser_options=BROWSER_OPTIONS.FIREFOX):
     if type(browser_options) == ChromeOptions:
@@ -54,8 +55,8 @@ def simplify(browser_options=BROWSER_OPTIONS.FIREFOX):
 
 def setup_free_proxy(page_url, proxy_server, browser_options=BROWSER_OPTIONS.FIREFOX, headless=False):
     print('Current proxy server:', proxy_server)
-    host = proxy_server.split(':')[0]
-    port = int(proxy_server.split(':')[1])
+    host = proxy_server.split(':')[1][2:]
+    port = int(proxy_server.split(':')[2])
     print('Go to page', page_url)
 
     if type(browser_options) == ChromeOptions:
@@ -98,8 +99,10 @@ def setup_driver(page_url, tor_path=TOR_PATH.WINDOWS, browser_options=BROWSER_OP
         print('Use HTTP Request Randomizer proxy server')
         while True:
             try: 
-                rand_proxy = random.choice(proxies)
-                proxy_server = rand_proxy.get_address()
+                # print(type(proxies))
+                # rand_proxy = random.choice(proxies)
+                # proxy_server = rand_proxy.get_address()
+                proxy_server = proxies
                 return setup_free_proxy(page_url, proxy_server, browser_options, headless)
             except Exception as e:
                 proxies.remove(rand_proxy)

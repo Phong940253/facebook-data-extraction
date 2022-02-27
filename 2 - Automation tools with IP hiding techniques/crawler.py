@@ -5,7 +5,7 @@ import json
 
 PAGE_URL = 'https://www.facebook.com/KTXDHQGConfessions/'
 TOR_PATH = browser.TOR_PATH.NONE
-BROWSER_OPTIONS = browser.BROWSER_OPTIONS.FIREFOX
+BROWSER_OPTIONS = browser.BROWSER_OPTIONS.CHROME
 
 USE_PROXY = True
 PRIVATE = True
