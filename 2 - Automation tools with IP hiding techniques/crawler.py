@@ -3,7 +3,7 @@ import page
 import re
 import json
 
-PAGE_URL = 'https://www.facebook.com/groups/j2team.community/posts/1782236498775129/'
+PAGE_URL = 'https://www.facebook.com/groups/j2team.community/'
 TOR_PATH = browser.TOR_PATH.NONE
 BROWSER_OPTIONS = browser.BROWSER_OPTIONS.CHROME
 
@@ -12,8 +12,8 @@ PRIVATE = True
 SPEED_UP = True
 HEADLESS = False
 
-SCROLL_DOWN = 7
-FILTER_CMTS_BY = page.FILTER_CMTS.MOST_RELEVANT
+SCROLL_DOWN = 0
+FILTER_CMTS_BY = page.FILTER_CMTS.ALL_COMMENTS
 VIEW_MORE_CMTS = 2
 VIEW_MORE_REPLIES = 2
 
@@ -54,13 +54,22 @@ while True:
 
 
 html_posts = driver.find_elements_by_css_selector(page.POSTS_SELECTOR)
-file_name = re.findall('\.com/(.*)', PAGE_URL)[0].split('/')[0]
+file_name = re.findall('\.com/(.*)', PAGE_URL)[0]
+if ("groups" == file_name.split("/")[0]):
+    file_name = file_name.split("/")[1]
+    html_posts = html_posts[2:]
+else: 
+    file_name = file_name.split("/")[0]
+# print("file name: ", file_name) 
+# debug
+
 total = 0
 
 print('Start crawling', len(html_posts), 'posts...')
 with open(f'data/{file_name}.json', 'w', encoding='utf-8') as f:
     for post_index, post in enumerate(html_posts):
-        post_url = get_child_attribute(post, '._5pcq', 'href').split('?')[0]
+        post_url = get_child_attribute(post, 'span.j5wam9gi > span > span > span > a', 'href').split('?')[0]
+        # debug
         post_id = re.findall('\d+', post_url)[-1]
         utime = get_child_attribute(post, 'abbr', 'data-utime')
         post_text = get_child_attribute(post, '.userContent', 'textContent')
@@ -117,4 +126,4 @@ with open(f'data/{file_name}.json', 'w', encoding='utf-8') as f:
 
 del html_posts
 print('Total comments and replies crawled:', total)
-browser.close()
+# browser.close()

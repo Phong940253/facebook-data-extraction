@@ -1,8 +1,8 @@
 from browser import *
 import time
 
-POSTS_SELECTOR = '[class="_427x"] .userContentWrapper'
-COMMENTABLE_SELECTOR = f'{POSTS_SELECTOR} .commentable_item'
+POSTS_SELECTOR = '.sbcfpzgs'
+COMMENTABLE_SELECTOR = f'{POSTS_SELECTOR} > .monazrh9'
 FILTER_CMTS = type('Enum', (), {
     'MOST_RELEVANT': 'RANKED_THREADED',
     'NEWEST': 'RECENT_ACTIVITY',
@@ -38,6 +38,7 @@ def load_more_posts(driver):
 
 @timer
 def click_multiple_buttons(driver, selector):
+    # print(driver.find_elements_by_css_selector(selector))
     for button in driver.find_elements_by_css_selector(selector):
         driver.execute_script('arguments[0].click()', button)
         while find_all(S(f'{COMMENTABLE_SELECTOR} [role="progressbar"]')) != []: pass
@@ -70,7 +71,7 @@ def load(driver, page_url, scroll_down=0, filter_cmts_by=FILTER_CMTS.MOST_RELEVA
 
     for i in range(view_more_cmts):
         print(f'Click View more comments buttons times {i + 1}/{view_more_cmts}')
-        click_multiple_buttons(driver, f'{COMMENTABLE_SELECTOR} ._7a94 ._4sxc')
+        click_multiple_buttons(driver, f'{COMMENTABLE_SELECTOR} > .m9osqain .a3bd9o3v')
         if failed_to_load(driver, page_url): return False
 
     for i in range(view_more_replies):
