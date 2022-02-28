@@ -3,11 +3,11 @@ import page
 import re
 import json
 
-PAGE_URL = 'https://www.facebook.com/KTXDHQGConfessions/'
+PAGE_URL = 'https://www.facebook.com/groups/j2team.community/posts/1782236498775129/'
 TOR_PATH = browser.TOR_PATH.NONE
 BROWSER_OPTIONS = browser.BROWSER_OPTIONS.CHROME
 
-USE_PROXY = True
+USE_PROXY = False
 PRIVATE = True
 SPEED_UP = True
 HEADLESS = False

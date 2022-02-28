@@ -24,7 +24,7 @@ BROWSER_OPTIONS = type('Enum', (), {
 # request_proxy = RequestProxy()
 # request_proxy.set_logger_level(40)
 # proxies = request_proxy.get_proxy_list()
-# proxies = FreeProxy().get()
+proxies = FreeProxy().get()
 
 def hidden(browser_options=BROWSER_OPTIONS.FIREFOX):
     if type(browser_options) == ChromeOptions:
@@ -54,12 +54,12 @@ def simplify(browser_options=BROWSER_OPTIONS.FIREFOX):
     return browser_options
 
 def setup_free_proxy(page_url, proxy_server, browser_options=BROWSER_OPTIONS.FIREFOX, headless=False):
-    # proxy_server = "http://192.168.43.1:10809"
+    proxy_server = "http://192.168.43.1:10809"
     print('Current proxy server:', proxy_server)
-    host = proxy_server.split(':')[1][2:]
-    port = int(proxy_server.split(':')[2])
-    # host = "192.168.43.1"
-    # port = 10809
+    # host = proxy_server.split(':')[1][2:]
+    # port = int(proxy_server.split(':')[2])
+    host = "192.168.43.1"
+    port = 10809
     print('Go to page', page_url)
 
     if type(browser_options) == ChromeOptions:
