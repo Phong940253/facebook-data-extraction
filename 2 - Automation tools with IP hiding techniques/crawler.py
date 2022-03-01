@@ -92,11 +92,22 @@ with open(f'data/{file_name}.json', 'w', encoding='utf-8') as f:
         post_text = get_child_text(post, '.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.fe6kdd0r.mau55g9w.c8b282yb.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.iv3no6db.jq4qci2q.a3bd9o3v.b1v8xokw.oo9gr5id')
         # print(post_text)
         cmt_share = post.find_elements_by_css_selector('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.fe6kdd0r.mau55g9w.c8b282yb.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.iv3no6db.jq4qci2q.a3bd9o3v.b1v8xokw.m9osqain')
-        total_shares = cmt_share[2].text.split(" ")[0]
-        total_cmts = cmt_share[1].text.split(" ")[0]
+        if len(cmt_share) == 3:
+            total_shares = cmt_share[2].text.split(" ")[0]
+            total_cmts = cmt_share[1].text.split(" ")[0]
+        elif len(cmt_share) == 2:
+            if "bình luận" in cmt_share[1].text:
+                total_shares = 0
+                total_cmts = cmt_share[1].text.split(" ")[0]
+            else:
+                total_cmts = 0
+                total_shares = cmt_share[1].text.split(" ")[0]
+        else:
+            total_shares = 0
+            total_cmts = 0
 
         json_cmts = []
-        html_cmts = post.find_elements_by_css_selector('._7a9a>li')
+        html_cmts = post.find_elements_by_css_selector('.monazrh9 > div > div > ul > li')
 
         num_of_cmts = len(html_cmts)
         total += num_of_cmts
@@ -104,8 +115,8 @@ with open(f'data/{file_name}.json', 'w', encoding='utf-8') as f:
         if num_of_cmts > 0:
             print(f'{post_index}. Crawling {num_of_cmts} comments of post {post_id}')
             for comment in html_cmts:
-                comment_owner = comment.find_elements_by_css_selector('._7a9b')
-                comment_info = get_comment_info(comment_owner[0])
+                comment_owner = comment.find_element_by_css_selector('div')
+                comment_info = get_comment_info(comment_owner)
 
                 json_replies = []
                 html_replies = comment.find_elements_by_css_selector('._7a9g')
