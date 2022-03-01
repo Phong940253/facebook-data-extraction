@@ -91,8 +91,9 @@ with open(f'data/{file_name}.json', 'w', encoding='utf-8') as f:
         utime = get_child_attribute(post, 'abbr', 'data-utime')
         post_text = get_child_text(post, '.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.fe6kdd0r.mau55g9w.c8b282yb.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.iv3no6db.jq4qci2q.a3bd9o3v.b1v8xokw.oo9gr5id')
         # print(post_text)
-        total_shares = get_child_attribute(post, '[data-testid="UFI2SharesCount/root"]', 'innerText')
-        total_cmts = get_child_attribute(post, '._3hg-', 'innerText')
+        cmt_share = post.find_elements_by_css_selector('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.fe6kdd0r.mau55g9w.c8b282yb.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.iv3no6db.jq4qci2q.a3bd9o3v.b1v8xokw.m9osqain')
+        total_shares = cmt_share[2].text.split(" ")[0]
+        total_cmts = cmt_share[1].text.split(" ")[0]
 
         json_cmts = []
         html_cmts = post.find_elements_by_css_selector('._7a9a>li')
