@@ -2,7 +2,7 @@ from browser import *
 import time
 
 POSTS_SELECTOR = '.sbcfpzgs'
-COMMENTABLE_SELECTOR = f'{POSTS_SELECTOR} > .monazrh9'
+COMMENTABLE_SELECTOR = f'{POSTS_SELECTOR} .monazrh9'
 FILTER_CMTS = type('Enum', (), {
     'MOST_RELEVANT': 'RANKED_THREADED',
     'NEWEST': 'RECENT_ACTIVITY',
@@ -71,7 +71,7 @@ def load(driver, page_url, scroll_down=0, filter_cmts_by=FILTER_CMTS.MOST_RELEVA
 
     for i in range(view_more_cmts):
         print(f'Click View more comments buttons times {i + 1}/{view_more_cmts}')
-        click_multiple_buttons(driver, f'{COMMENTABLE_SELECTOR} > .m9osqain .a3bd9o3v')
+        click_multiple_buttons(driver, f'{COMMENTABLE_SELECTOR} > .m9osqain.a3bd9o3v')
         if failed_to_load(driver, page_url): return False
 
     for i in range(view_more_replies):
