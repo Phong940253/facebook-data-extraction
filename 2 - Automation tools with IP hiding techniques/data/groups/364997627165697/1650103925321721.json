@@ -1,0 +1,1792 @@
+{
+    "URL post": "https://touch.facebook.com/1650103925321721",
+    "Content": "#j2team_share #j2team_tutorial #j2team_discussion\nTự tạo 1 extension xem lại tin nhắn bị gỡ trên fb messenger\n\n(reup, mình lỡ tay xóa bài viết trước)\n\nChào mọi người, lại là mình đây.\n\nHôm qua lướt fb thấy bài viết của KB2ATool (https://www.facebook.com/KB2A.Team/posts/344823077177578) (đã cũ) thông báo ra phiên bản mới của KB2A Tool. Cũng nghe danh lâu nên hào hứng vô tải về xài thử, mới thấy extension này nó nặng hơn trăm MB ạ 😢 Không hiểu code gì mà code nặng thế, sự tò mò nó nổi lên, thế là vào xem code, xem nó hoạt động thế nào…\n\nSau vài đường google (gần chục tiếng), cuối cùng mình đã hiểu phần nào cách hoạt động của chức năng xem tin nhắn đã gỡ trên fb rồi. Mà cái gì hay với lạ thì lạ muốn chia sẻ với mọi người 😁\n\nSource code của extension KB2A Tool thì chắc chắn là mấy bạn dev trong team đó đã nén hết rồi, nên việc tìm hiểu code mới mất nhiều thời gian như vậy. Dưới đây mình sẽ nói tổng quan về cách hoạt động của extension và cách tìm hiểu, cách làm từng bước nhé.\n\nP/s: Bài viết này mình viết dựa trên tinh thần chia sẻ kiến thức, chứ mình không quảng cáo hay chê bai gì extension KB2ATool nha. Nếu thích mọi người có thể tải về xài ủng hộ mấy bạn ấy nha, tool đó có nhiều chức năng lắm không chỉ mỗi xem tin nhắn đã gỡ đâu, và cũng có giao diện đẹp nữa. ❤️\n\nOK LET’S GO.\n\nSơ lược cách hoạt động của extension\n1. LƯU HẾT TIN NHẮN \nMình sẽ tạo 1 script, chèn script nó vào trang facebook, script sẽ lắng nghe mọi sự kiện gừi/nhận tin nhắn, và lưu lại nội dung tin nhắn kèm theo id của tin nhắn đó.\n\n2. KIỂM TRA TIN NHẮN CŨ \nKèm theo đó, mỗi khi có sự kiện tin nhắn mới, mình sẽ kiểm tra xem trong danh sách đã lưu có thằng nào giống id với sự kiện mới này không. \nNếu có thì (rất có thể) đây là sự kiện thu hồi tin nhắn. \n=> XUẤT RA TIN NHẮN ĐƯỢC THU HỒI\n\nĐể hiểu chi tiết cách làm, mọi người đọc tiếp nhé ❤️\n\nCách hoạt động của tin nhắn trong fb:\nĐể có thể gửi nhận tin nhắn trong thời gian thực, FB không dùng những loại request GET PUT bình thường như fetch, ajax, axios, … Mà nó dùng 1 cấu trúc khác, đó là  (https://topdev.vn/blog/socket-la-gi-websocket-la-gi/), cung cấp khả năng giao tiếp thời gian thực giữa client và server, và có thể là giữa các client với nhau nữa..\n\nNếu mọi người vào devtool của trình duyệt, vào tab Network và lọc request theo WS (websocket) thì sẽ thấy được những kết nối websocket được dùng bởi FB. \n\nFB có nhiều kết nối websocket, trong đó thằng dành cho tin nhắn có tên mở đầu là chat?region=….. Bấm vào ta sẽ thấy được mọi luồng dữ liệu tới và đi trong kết nối websocket ấy.\n\nPhân tích dữ liệu tin nhắn\nCó rất nhiều luồng dữ liệu tới và đi trong websocket chat này, nếu chúng ta thử gửi 1 tin cho người khác, nó sẽ tạo 1 luồng gửi đi, còn người khác gửi cho mình, sẽ có 1 luồng gửi về.\n\nDữ liệu trong mỗi luồng mặc định hiển thị dưới dạng base64, chúng là có thể chuyển về utf8 để dễ đọc hơn (thấy nó giống chuỗi json hơn thôi chứ vẫn khó đọc lắm 😂).\n\nNếu tìm kỹ chúng ta sẽ thấy được nội dung tin nhắn, và thật may là không bị mã hóa gì khác nữa cả 🥸. OKE tiếp theo để cho tiện thì ta tạo 1 regex giúp ta lấy được đoạn tin nhắn đó ra khỏi chuỗi dữ liệu, mình dùng web regexr.com để tạo regex cho lẹ.\n\n**~ 2 thousand years later ....**\n\nPhải đi học lại khóa regex mới được 😢😢😢\n\n**YAY** đã lấy được nội dung tin nhắn ra khỏi luồng dữ liệu rồi. Giờ để mọi thứ được tự động, hãy tạo extension.\n\nTạo extension\nMình tìm hiểu cách làm extension ở https://topdev.vn/blog/cach-build-chrome-extension/ kết hợp với ngẫm code của KB2A Tool.\n\nVấn đề chính bây giờ đó là làm sao để có thể lắng nghe websocket của fb. Mỗi biến websocket được tạo ra sẽ là 1 biến local riêng biệt, không phải biến toàn cục, không thể truy cập được từ bên ngoài.\n\nSau khi tu luyện bằng source code KB2A Tool, thì mình đã tìm ra chân lý. Mấy bạn ấy tạo 1 đoạn script, và cho nó chạy trước khi trang fb chạy (run at document_start). Đoạn script này sẽ tạo ra 1 biến window.WebSocket **GIẢ**, trong đó chèn code lắng nghe sự kiện.\n\nKhi trang facebook bắt đầu chạy, nó sẽ dùng thằng **GIẢ** này để tạo biến websocket local cho riêng nó để dùng. Nhưng do đã bị **LÀM GIẢ** từ trước, nên trong biến local đó đã có sẵn code lắng nghe sự kiện của ta. BÙMMM 😂😂🤯🤯\n\nVậy là mọi ý tưởng đã hoàn thành. Mình đã thực hiện và chia sẻ source code với mọi người tại github https://github.com/HoangTran0410/RevealDeletedFBMessages\n\nNếu thấy hay thì mọi người hãy star/folk project để nhận được thông báo cập nhật mới nhất nhé.\n\np/s: Mình sẽ thêm ảnh từng bước và hướng dẫn chi tiết trong từng ảnh nhé..",
+    "Comment": [
+        {
+            "Owner": "Vu Hoang Anh",
+            "URL Owner": "https://m.facebook.com/vhaelatuido?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "sau 2 tháng em đã đọc hiểu thk anh 🙁",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoang Tran",
+            "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Từ bài viết này mình cũng muốn nhắc nhở mọi người cẩn thận khi cài những extension không rõ nguồn gốc, vì như mấy bạn thấy nó có thể truy cập vào những thông tin cá nhân, tin nhắn cá nhân. Đây là mình còn lương tâm, mình chưa thêm code gửi tin nhắn của mấy bạn tới server của mình :)) Nếu để người xấu lợi dụng, tạo extension chứa mã độc, thì thông tin của mấy bạn đi đời luôn á",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Thành Long",
+                    "URL Owner": "https://m.facebook.com/BrodzNo1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Bị như này là sao bác nhỉ",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thành Long bác chờ mai là có bản mới nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Việt Thảo",
+                    "URL Owner": "https://m.facebook.com/t.rekttt?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trước hết bạn cần qua được kiểm duyệt của chrome store đã 😀",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trần Đức Huy",
+                    "URL Owner": "https://m.facebook.com/tranduchuy682?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Việt Thảo có những extension có thể tải file về cài qua dev mode chứ đâu phải cái gì cũng qua kiểm duyệt của chrome store đâu",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Phương Phương Phương",
+            "URL Owner": "https://m.facebook.com/chyyy.0701?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Nguyễn Văn Hiệp thêm cái nì cho cái extension của pạng ik 🥺",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Mạnh Hùng",
+            "URL Owner": "https://m.facebook.com/ManhhHungg11223344?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Trần Thế Hiển sr nãy tag nhầm bài bên 3s team",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lê Thư",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100008526093572&groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Karin Krin 🥲 chời quơi có xóa hì cũng có cách đọc lại dc",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Hữu Chí",
+            "URL Owner": "https://m.facebook.com/chimanucian?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Phú Thuận",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Văn Đoàn",
+            "URL Owner": "https://m.facebook.com/vandoan92.uit?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "À mấy bác cho e hỏi ké luôn với, chứ mà đăng bài chờ duyệt có khi tới hết dịch luôn. PC của e dạo gần đây bị full ổ cứng một cách bất thường. Hôm qua còn trống 37GB này còn 20GB. Không biết nguyên nhân tại sao, đã thử dọn thùng rác, windows update, đã làm theo một số hướng dẫn trên mạng như không khả thi. Bác nào biết hoặc từng bị giúp e với. E cảm ơn. Dưới là hình ổ C 😭😭😭",
+            "Number reply": 5,
+            "Reply cmt": [
+                {
+                    "Owner": "Ông Danh Beo",
+                    "URL Owner": "https://m.facebook.com/moonnight284?groupid=364997627165697&__tn__=R",
+                    "Cmt": "bác tải windirstat về xem ổ nào đang tăng với nhiều dung lượng thử xem",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Văn Đoàn",
+                    "URL Owner": "https://m.facebook.com/vandoan92.uit?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Ông Danh Beo dạ đây bác ơi. mà e tìm file đó ko thấy",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Văn Đoàn",
+                    "URL Owner": "https://m.facebook.com/vandoan92.uit?groupid=364997627165697&__tn__=R",
+                    "Cmt": "à e thấy rồi, cảm ơn bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Ông Danh Beo",
+                    "URL Owner": "https://m.facebook.com/moonnight284?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đoàn Đv ok không có gì",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Sơn Phạm",
+                    "URL Owner": "https://m.facebook.com/phamhoangducson?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đoàn Đv như ngày trước thì em cài microsoft sql thì trúng bản lỗi, database của em nó mỗi ngày tự sinh ra file dump ngày ngày phình ra 5gb mà k hiểu đâu ra mãi mới tìm dc nguyên nhân =)) em thì em dùng folder size app ngoài để coi từng dc từng thư mục nào cái nặng bất thường để tìm ra.",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Loan Tô",
+            "URL Owner": "https://m.facebook.com/loan.to?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Xịn quá vậy :))))",
+            "Number reply": 6,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyen Thuong Minh",
+                    "URL Owner": "https://m.facebook.com/thuongminh.ng?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Loan Tô cài tool chưa :)))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Loan Tô",
+                    "URL Owner": "https://m.facebook.com/loan.to?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyen Thuong Minh Chưa, anh để dành khi nào có bản hoàn thiện thì cài :)))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trang Chanp",
+                    "URL Owner": "https://m.facebook.com/trang.chanp.1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Phạm Hường m nghĩ m thoát khỏi tay c Loan Tô á",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phạm Hường",
+                    "URL Owner": "https://m.facebook.com/huongpham.0607?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trang Chanp thôi đượt rồi em thua😭😭😭",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Loan Tô",
+                    "URL Owner": "https://m.facebook.com/loan.to?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trang Chanp ơ dạo này Hườn tiến bộ rồi :))))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phạm Hường",
+                    "URL Owner": "https://m.facebook.com/huongpham.0607?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Loan Tô lâu lắm em mới đc chị Loan khen 😘😘😘😘",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Trường Giang",
+            "URL Owner": "https://m.facebook.com/nyan.dec30?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Ngọc Mai hê hê",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Hải Yến",
+            "URL Owner": "https://m.facebook.com/onlyHy?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Phạm Vỹ tag m để m đọc dùm",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Văn Đoàn",
+            "URL Owner": "https://m.facebook.com/vandoan92.uit?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "like cho bác vì sau 2000 năm làm regex",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Đinh Đức Thi",
+            "URL Owner": "https://m.facebook.com/dinhthi1091?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "cái này chỉ xem lại được ngay lúc đó , chứ k xem được tin đã thu hồi qua trong quá khứ nhỏ :D",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Le The Hung",
+                    "URL Owner": "https://m.facebook.com/lethehung2000?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đinh Đức Thi tham lam",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đinh Đức Thi",
+                    "URL Owner": "https://m.facebook.com/dinhthi1091?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Le The Hung haha tham thì phải tham cho trót :V",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Lê Quốc Bình",
+            "URL Owner": "https://m.facebook.com/lequocbinh.04?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "ai muốn nhanh gọn lẹ hơn thì xài luôn KB2A Tool cho nhanh nha:\nhttps://youtu.be/tsMgMZtKWek",
+            "Number reply": 10,
+            "Reply cmt": [
+                {
+                    "Owner": "Phan Đức Thắng",
+                    "URL Owner": "https://m.facebook.com/thangphanst?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình mình làm giống video mà gỡ tn là mất luôn :3",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vu Hoang Anh",
+                    "URL Owner": "https://m.facebook.com/vhaelatuido?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Sài kb2a thì ui sẽ đẹp hơn và rất dễ thao tác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Truong Dang Duong",
+                    "URL Owner": "https://m.facebook.com/duongdzin?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Phan Đức Thắng inbox page KB2A Team để được hỗ trợ về tool nha < 3",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phan Đức Thắng",
+                    "URL Owner": "https://m.facebook.com/thangphanst?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Truong Dang Duong vâng bác :333",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Ngọc Thành",
+                    "URL Owner": "https://m.facebook.com/firethanh?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình idol trong lòng eim",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trịnh Đức Đại",
+                    "URL Owner": "https://m.facebook.com/dai.trinh.pro?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình idol",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phạm Minh Nhật",
+                    "URL Owner": "https://m.facebook.com/phamminhnhat.1612?groupid=364997627165697&__tn__=R",
+                    "Cmt": "pr trá hình quá bạn eei",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Linh Mã",
+                    "URL Owner": "https://m.facebook.com/tao.la.linh.ma?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình chúa tể marketing à :))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Minh Anh",
+                    "URL Owner": "https://m.facebook.com/profile.php?id=100054349403107&groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình ông hoàng cơ hội",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Bảo Hoàng",
+                    "URL Owner": "https://m.facebook.com/BaoHoang153.vn?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Quốc Bình trúa tể trank tkủ",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Huy Hưng",
+            "URL Owner": "https://m.facebook.com/L1nusV?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Để custom lại hiển thị trên mess luôn cho tiện :v",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Văn Hiệp",
+            "URL Owner": "https://m.facebook.com/hypnguyen1209?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Mk thấy extension hay lại còn nhỏ gọn nữa nếu bác thấy cần thì có thể ib mk, mk sẽ up lên webstore giúp và mọi credit đều thuộc về bác =)))",
+            "Number reply": 6,
+            "Reply cmt": [
+                {
+                    "Owner": "Vu Hoang Anh",
+                    "URL Owner": "https://m.facebook.com/vhaelatuido?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Văn Hiệp .______.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Văn Hiệp",
+                    "URL Owner": "https://m.facebook.com/hypnguyen1209?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vu Hoang Anh kìa =)))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vu Hoang Anh",
+                    "URL Owner": "https://m.facebook.com/vhaelatuido?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hong coa j dau anh",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "ù ôi được luôn hả :)))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Văn Hiệp",
+                    "URL Owner": "https://m.facebook.com/hypnguyen1209?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran đc bác =))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Hoàng",
+                    "URL Owner": "https://m.facebook.com/hoang.nguyen.bigunit?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Idol :3",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Hoang Tran",
+            "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Cho những bạn chưa biết cách cài và cách dùng:\n\n1: CÀI ĐẶT: vào đường link github mình để trên stt, rồi tải code về, giải nén. Sau đó vào trang quản lý extensions trong trình duyệt bạn dùng, rồi kéo thả folder đã giải nén là xong (nhớ bật dấu tích Developer mode lên mới kéo thả vô được nhé)\n\n2: SỬ DỤNG: F5 lại trang facebook là extension sẽ tự chạy. ấn F12 để mở giao diện console trên trình duyệt. Trong console nó sẽ ghi lại tất cả tin nhắn tới và đi. Nếu có ai đó thu hồi tin nhắn, các bạn chỉ cần vào lại console xem lịch sử tin nhắn là xong.",
+            "Number reply": 8,
+            "Reply cmt": [
+                {
+                    "Owner": "Tien Thanh",
+                    "URL Owner": "https://m.facebook.com/painkjller?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran tải cái nào z bro",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Tải zip nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "La Văn Bá",
+                    "URL Owner": "https://m.facebook.com/zNot.Found.404z?groupid=364997627165697&__tn__=R",
+                    "Cmt": "chỉ những tin nhắn sau khi được cài extension hả bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "La Văn Bá đúng rồi bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Quang Huy",
+                    "URL Owner": "https://m.facebook.com/huypr12c?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Thế lúc mình ko dùng chrome, thì khi bật máy lên có xem đc tin nhắn bị gỡ lúc chrome tắt ko bác.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "La Văn Bá không nha bác, phải bật tab thì extension mới chạy, nó chạy thì nó mới lưu tin nhắn vào console được nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Long Nguyễn",
+                    "URL Owner": "https://m.facebook.com/longnguyen141244?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Tin nhắn đã lưu nhưng tắt trình duyệt đi mở lại cũng vẫn mất đúng ko bác?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "La Văn Bá đúng r bạn, hiện tại mình đang làm bản mới lưu ngay cả khi tắt rồi nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trang Linh",
+            "URL Owner": "https://m.facebook.com/tr4n9?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Nguyễn Tùng",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Quoc Anh",
+                    "URL Owner": "https://m.facebook.com/khoqua.muoiot?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trang Linh xịn nhaa",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Việt Anh",
+            "URL Owner": "https://m.facebook.com/vietcuber?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Đợi bác update lên dễ nhìn mess gỡ hơn và ra bản edge",
+            "Number reply": 5,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Việt Anh hiện edge vẫn xài được nha bạn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phạm Vỹ",
+                    "URL Owner": "https://m.facebook.com/ngopham.vy.5?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran bác ơi, cái của bác xem được tin nhắn thôi ạ?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Phạm Vỹ ý bạn là sao",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Việt Anh",
+                    "URL Owner": "https://m.facebook.com/vietcuber?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Bác cho lên store Edge nó không lấy phí hay sao ấy bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Việt Anh mình cập nhật xong sẽ đăng lên nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Mạnh Hùng",
+            "URL Owner": "https://m.facebook.com/ManhhHungg11223344?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "với video thì chỉ nhìn được ảnh thumbnail thôi chứ không xem được bác ơi",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Mạnh Hùng mình sẽ fix nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Duy Quân",
+            "URL Owner": "https://m.facebook.com/duyquan.social?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "cây bi tu ây 🌚",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hải Lưu",
+            "URL Owner": "https://m.facebook.com/hoanghai.luu.71?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Quyên t biết bạn m hay gỡ mà.",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Quyên",
+                    "URL Owner": "https://m.facebook.com/quyen.mai.1217727?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hải Lưu bữa nay bạn t ngoan rồi k thấy gỡ nữa :))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hải Lưu",
+                    "URL Owner": "https://m.facebook.com/hoanghai.luu.71?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Quyên tuyệt zời 🥳🥳🥳",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Lâm Ngọc Khương",
+            "URL Owner": "https://m.facebook.com/lamngockhuong?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Biến tướng lại 1 tý để cài vô máy người yêu, vợ, chồng để đọc trộm tin nhắn các bạn ợ 🤣🤣🤣",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Trung Kiên",
+                    "URL Owner": "https://m.facebook.com/trkien96?groupid=364997627165697&__tn__=R",
+                    "Cmt": "ok bạn, nhưng trước mắt để kiếm người yêu đã :)))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lâm Ngọc Khương",
+                    "URL Owner": "https://m.facebook.com/lamngockhuong?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trung Kiên à quên bạn, quên step này, hèn chi thấy có bug 😂😂😂",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trung Kiên",
+                    "URL Owner": "https://m.facebook.com/trkien96?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lâm Ngọc Khương đúng rồi, phải unit test cho kĩ chứ 😁",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lâm Ngọc Khương",
+                    "URL Owner": "https://m.facebook.com/lamngockhuong?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trung Kiên xin lỗi thằng bạn, cơ mà tách ra đi kiếm ng iu đi, chớ 2 thằng ở đây ế chết moẹ",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Hoàng Trọng Hỡi",
+            "URL Owner": "https://m.facebook.com/larevolutionrouge?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Cái trò inject websocket này thú vị phết. Sẽ học hỏi để làm mấy extension cho công việc 😀",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Long",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100011486830547&groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Phạm Minh Trí",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Thắng",
+            "URL Owner": "https://m.facebook.com/thanghokngu1?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "thực ra các bác có thể đơn giản hóa bằng cách dùng 1 con bot chat như thế này:",
+            "Number reply": 14,
+            "Reply cmt": [
+                {
+                    "Owner": "Thành Khang",
+                    "URL Owner": "https://m.facebook.com/ntkhang03?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng thế thì ko lưu được tin nhắn ib",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Hiếu",
+                    "URL Owner": "https://m.facebook.com/gaquyt0c231?groupid=364997627165697&__tn__=R",
+                    "Cmt": "này là cài vào group hả bạn? chứ 2 người thì chạy sao nhỉ?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Hải Long",
+                    "URL Owner": "https://m.facebook.com/longk.hoanghai?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Hiếu cài trực tiếp trên account ấy b.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đức Tiến",
+                    "URL Owner": "https://m.facebook.com/ductape.13014?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoàng Hải Long cài nnao thế bác ơi, có xem được hình ảnh, âm thanh hay video k ạ?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lương Minh Đức",
+                    "URL Owner": "https://m.facebook.com/lumos.94?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng hấp dẫn thế :3 làm tut tạo bot đi bạn :3",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Hải Long",
+                    "URL Owner": "https://m.facebook.com/longk.hoanghai?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Đức Tiến Có luôn bác nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đức Tiến",
+                    "URL Owner": "https://m.facebook.com/ductape.13014?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoàng Hải Long bác có tiện k chỉ e với",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Uyên Ly",
+                    "URL Owner": "https://m.facebook.com/lylyng11?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng b ơi có thể hướng dẫn mình cách tạo kh mình đang cần lắm = (((((",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thắng",
+                    "URL Owner": "https://m.facebook.com/thanghokngu1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Uyên Ly cái này chạy = account facebook, dễ bị checkpoint",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thắng",
+                    "URL Owner": "https://m.facebook.com/thanghokngu1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Uyên Ly cân nhắc trước đi nhen",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Hải Long",
+                    "URL Owner": "https://m.facebook.com/longk.hoanghai?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Đức Tiến Ib qua đây nhó https://www.facebook.com/profile.php?id=100068126861379",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Uyên Ly",
+                    "URL Owner": "https://m.facebook.com/lylyng11?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng nhờ b hướng dẫn ạ, giờ có mất cũng được miễn mình đọc được thông tin 🥺🥺",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thắng",
+                    "URL Owner": "https://m.facebook.com/thanghokngu1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Uyên Ly ib anh hoàng hải long ở trên đi b,ổng cao tay hơn mình :v",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Uyên Ly",
+                    "URL Owner": "https://m.facebook.com/lylyng11?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng cảm ơn b nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đặng Trung Hiếu",
+            "URL Owner": "https://m.facebook.com/vntn03?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Xuất sắc luôn 🤣",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Phương",
+            "URL Owner": "https://m.facebook.com/Pccc.05111998?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "1 con app leak đc tin nhắn messenger, người ta thu hồi gì bên messenger thì bên app vẫn còn :)))",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Dương Thái Bảo",
+                    "URL Owner": "https://m.facebook.com/Kennex666?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Phương em k lầm nó nghe thông báo thôi 😁 Còn hình ảnh đồ thì k được.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Phương",
+                    "URL Owner": "https://m.facebook.com/Pccc.05111998?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Dương T. Bảo nó xem đc text thôi bác, ko xem đc picture hay voice",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trần Gia",
+                    "URL Owner": "https://m.facebook.com/GrazT.2106?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Phương bữa cũng dùng 1 lần xong bị cp nên xóa luôn :))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Phương",
+                    "URL Owner": "https://m.facebook.com/Pccc.05111998?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trần Gia xài thì nó bị cp lần đầu thôi, hành vi lạ nó cp mà.\nNếu muốn tránh thì bác login = cookie web",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Hoang Tran",
+            "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "reup lại thiếu 1 hình nữa rồi 🙁 Đây là hình các bước để xem dữ liệu websocket của facebook nhé (giai đoạn phân tích dữ liệu tin nhắn - nếu các bạn chỉ tải về xài extension thôi thì không cần làm như ảnh này nhé)",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Giờ mà chỉnh sửa bài viết lại phải đợi duyệt 🙁 rồi lại lỡ tay bấm xóa thì toi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vu Hoang Anh",
+                    "URL Owner": "https://m.facebook.com/vhaelatuido?groupid=364997627165697&__tn__=R",
+                    "Cmt": "hay :3",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trực Phan",
+            "URL Owner": "https://m.facebook.com/p.c.truc.3?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "có thể xem lại cuộc tin nhắn đã bị xóa ko ông?",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Tuấn Anh Dinh",
+                    "URL Owner": "https://m.facebook.com/ucancallmetanh?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trực Phan chỉ khi bác đang chạy thôi .-.",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Cẩm Nhung",
+            "URL Owner": "https://m.facebook.com/nhunccc?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Tran Nguyen Khang",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Duy Lucas",
+            "URL Owner": "https://m.facebook.com/tuitendi2k?groupid=364997627165697&__tn__=R",
+            "Cmt": "đọc thì hiểu mà k biết làm 🙁 hóng video hướng dẫn của bác",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Duy Lucas nếu muốn cài thì bạn vào link github mình đưa, rồi tải code về, giải nén ra, rồi vào trang quản lý extensions của trình duyệt bạn dùng, rồi kéo thả folder đã giải nén vào là xong nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Duy Lucas",
+                    "URL Owner": "https://m.facebook.com/tuitendi2k?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran để em thử bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thủy Tiên Đặng",
+                    "URL Owner": "https://m.facebook.com/qualabuon123?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran nghe phức tạp quá ạ @@",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thủy Tiên Đặng lúc mình làm nó cũng phức tạp vậy á bạn",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Cường Nguyễn",
+            "URL Owner": "https://m.facebook.com/cuong.1308?groupid=364997627165697&__tn__=R",
+            "Cmt": "Em hỏi ngu tí data lưu vào đâu nhỉ\nEm lười đọc quá",
+            "Number reply": 9,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Cường Nguyễn mình không lưu data, chỉ hiển thị ra console của trình duyệt",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Cường Nguyễn",
+                    "URL Owner": "https://m.facebook.com/cuong.1308?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran ủa không lưu lại thì sau này cũng đâu có đọc lại được tn đã gỡ",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Văn Huy",
+                    "URL Owner": "https://m.facebook.com/NoCtrlZ?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Cường Nguyễn lưu trong tab đó , ko tắt tab đi thì nó có xoá biến đi đâu",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Cường Nguyễn",
+                    "URL Owner": "https://m.facebook.com/cuong.1308?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Văn Huy @@ chưa hiểu để làm gì lắm\nLưu lại để sau này coi thì còn hiểu được",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "nếu thấy ngta gỡ là vô console coi liền nha bạn :)) chứ gỡ rồi mấy ngày sau mới mở lại coi thì kì. Tính năng lưu để xem lại mình sẽ làm sau nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Cường Nguyễn nếu họ gỡ tin nhắn chữ thì bạn vô console đọc là được, còn nếu họ gỡ hình ảnh, thì mình cũng hiển thị hình ảnh trong console kèm theo link ảnh, bạn có thể mở rồi lưu lại ... dùng dần ... :v",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Cường Nguyễn",
+                    "URL Owner": "https://m.facebook.com/cuong.1308?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran ok bác\nThực ra em thấy cái này hơi k thiết thực lắm,m\n+, phải bật tab fb mới được\n+, việc thu hồi tin nhắn rất hiếm( đối với em)\nDù sao rất cảm ơn vì kiến thức bác đã share <3",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nếu bác muốn không cần bật tab mà vẫn track được tin nhắn, thì mình có tool chạy bằng cơm ngồi chờ tin nhắn dùm bác nhé, có điều không free thôi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Cường Nguyễn",
+                    "URL Owner": "https://m.facebook.com/cuong.1308?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran cảm ơn bác, nào có nhu cầu làm phi vụ mờ ám gì em sẽ pm bác xD",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Văn Nhân",
+            "URL Owner": "https://m.facebook.com/nheo.mitonios?groupid=364997627165697&__tn__=R",
+            "Cmt": "Cảm ơn bạn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nam Hoàng",
+            "URL Owner": "https://m.facebook.com/CoktailDail?groupid=364997627165697&__tn__=R",
+            "Cmt": "hình như nó load lại những tin nhắn cũ, request_id cũng là null nha b, khi hover vô danh sách người onl , nó sẽ load những tin nhắn gần đó :V",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dương Tuấn Nhật",
+            "URL Owner": "https://m.facebook.com/duongtuannhat012?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nhiều khi mệt mỏi đám con gái cứ nhắn xong thu hồi.",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Dương Tuấn Nhật giờ thì mệt mỏi vì biết được nó nhắn gì :))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Dương Tuấn Nhật",
+                    "URL Owner": "https://m.facebook.com/duongtuannhat012?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Ông thêm cách build vào đi, t nhớ là chỉ nén xong đổi đuôi nhưng mà ko nhớ rõ.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Tùng",
+                    "URL Owner": "https://m.facebook.com/letung327?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Dương Tuấn Nhật yêu đương mệt thế hả anh =)))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Việt Thảo",
+            "URL Owner": "https://m.facebook.com/t.rekttt?groupid=364997627165697&__tn__=R",
+            "Cmt": "Cơ mà thế rốt cuộc tại sao nó lại nặng hơn trăm mb thế chủ thớt 😄",
+            "Number reply": 7,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Việt Thảo do team bạn ấy lưu cả code của 1 trang web nhé, với đủ thứ hình ảnh, thư viện, templates .... Vân vân mây mây, còn code chạy logic chính chỉ một xíu thôi à",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Việt Thảo",
+                    "URL Owner": "https://m.facebook.com/t.rekttt?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Web mà minify code Js thì làm sao mà nặng vậy được nhie 🤔 thế chắc chỉ có do assets, mình đoán do chưa tối ưu assets?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Minify bản develop, mình thấy vẫn lưu sourceMapingUrl 😅 với lưu cả 1 vài bộ template để làm trang popup của extension, chưa xóa đi trước khi puplic lên luôn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Anh Nhân",
+                    "URL Owner": "https://m.facebook.com/monokaijssss?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Việt Thảo vì nhét luôn cả cái template web, không dám bỏ bớt file sợ xoá nhầm file đó a :v",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Anh Nhân",
+                    "URL Owner": "https://m.facebook.com/monokaijssss?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Việt Thảo chắc chưa lọc hết file assets như hình ảnh",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Việt Thảo",
+                    "URL Owner": "https://m.facebook.com/t.rekttt?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Anh Nhân làm vậy thì nhanh ra sản phẩm nhưng user đợi down chắc ngán 😀",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Anh Nhân",
+                    "URL Owner": "https://m.facebook.com/monokaijssss?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Việt Thảo trước em toàn thế nên em biết =))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Minh Cảnh",
+            "URL Owner": "https://m.facebook.com/mcn271?groupid=364997627165697&__tn__=R",
+            "Cmt": "=))) toi hóng bản zalo xem bình luận hơn :v",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyễn Minh Thành",
+                    "URL Owner": "https://m.facebook.com/thanhitma9x?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Minh Cảnh theo dõi bồ cho dễ hử",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Minh Cảnh",
+                    "URL Owner": "https://m.facebook.com/mcn271?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Minh Thành để xem mấy bác thương gia báo giá lẫn nhau .-.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Minh Thành",
+                    "URL Owner": "https://m.facebook.com/thanhitma9x?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Minh Cảnh chuẩn đét",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đặng Linh",
+            "URL Owner": "https://m.facebook.com/nhilinq?groupid=364997627165697&__tn__=R",
+            "Cmt": "Thực Trịnh",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Thực Trịnh",
+                    "URL Owner": "https://m.facebook.com/thuc.trinh.5891?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đặng Linh b tag để dọa tôi hay gì",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đặng Linh",
+                    "URL Owner": "https://m.facebook.com/nhilinq?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thực Trịnh nhột à bạn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thực Trịnh",
+                    "URL Owner": "https://m.facebook.com/thuc.trinh.5891?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đặng Linh",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thực Trịnh",
+                    "URL Owner": "https://m.facebook.com/thuc.trinh.5891?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Rồi tôi có pay acc ko để chuẩn bị tâm lý",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Vũ Đạt Phạm",
+            "URL Owner": "https://m.facebook.com/Fenrir96?groupid=364997627165697&__tn__=R",
+            "Cmt": "extension như này sẽ k up lên đc store đâu ad đừng mong 😂, vi phạm rule rồi ấy",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vũ Đạt Phạm rule gì vậy bạn, mình chưa up bao giờ nên cũng không biết 😥",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Đạt Phạm",
+                    "URL Owner": "https://m.facebook.com/Fenrir96?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Mình cũng k rõ rule ở mục nào nhưng đại loại là như này á b",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vũ Đạt Phạm nếu vậy mấy tool download story video, download full album fb cũng đâu đc phép nhỉ 🤔",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trương Tường Vỹ Khang",
+            "URL Owner": "https://m.facebook.com/truong.khang.921?groupid=364997627165697&__tn__=R",
+            "Cmt": "alo alo, em đang coi phim nên cho em để lại một tia thần thức :v",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Kim Ngân",
+            "URL Owner": "https://m.facebook.com/iamnganpham?groupid=364997627165697&__tn__=R",
+            "Cmt": "Như Ngọc Kiều",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Phạm Vương Sơn",
+            "URL Owner": "https://m.facebook.com/abatuyetson?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nhưng mà thật ra là ko biết cài làm sao 🤷",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyễn Phạm Vương Sơn bạn vào link github mình đưa, rồi tải code về, giải nén ra, rồi vào trang quản lý extensions của trình duyệt bạn dùng, rồi kéo thả folder đã giải nén vào là xong nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Lê Huỳnh Hải Đăng",
+            "URL Owner": "https://m.facebook.com/HDang276?groupid=364997627165697&__tn__=R",
+            "Cmt": "Ngô Hữu Đang anh trai vào giải nghĩa giúp em, lú quá rồi anh",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Ngô Hữu Đang",
+                    "URL Owner": "https://m.facebook.com/havingcorn?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Huỳnh Hải Đăng thì mỗi lần mình gửi tin nhắn hay cmt thì extension nó ghi lại,mình có xóa tin nhắn thì ở kia vẫn lưu nên vẫn xem dc thôi :V,có code github kìa,clone về rồi add vào extension trên wed là dc",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Quang Minh",
+            "URL Owner": "https://m.facebook.com/minhlqit?groupid=364997627165697&__tn__=R",
+            "Cmt": "cái này có xem được tin nhắn của người ta họ gỡ ko mn",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Tường Khải",
+                    "URL Owner": "https://m.facebook.com/tuongkhai191999?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Quang Minh xem được hết luôn bạn eii : ))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Công Tuấn Vũ",
+                    "URL Owner": "https://m.facebook.com/vulct?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Quang Minh Cài tool trước khi tin nhắn bị gỡ =))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Quang Minh",
+                    "URL Owner": "https://m.facebook.com/minhlqit?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Lê Công Tuấn Vũ giờ cài để xài cho mai mốt :(((",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Quang Minh",
+                    "URL Owner": "https://m.facebook.com/minhlqit?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Tường Khải ước gì bài này đăng sớm 2 tuần :v",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trịnh Tú",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100008367286709&groupid=364997627165697&__tn__=R",
+            "Cmt": "ước gì có tool lấy lại những tin nhắn đã xóa",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyễn Nam Long",
+                    "URL Owner": "https://m.facebook.com/J2TeamNNL?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Trịnh Tú xóa r thì bản thân Facebook chưa chắc còn lưu để mà mình lấy lại bác ạ\n\nGiờ nếu bắt chước cách làm của bài đăng này thì phải luôn lưu lại tin nhắn mỗi khi nhận đc",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Nam Long",
+                    "URL Owner": "https://m.facebook.com/J2TeamNNL?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Có cách khả quan hơn là làm theo kiểu cứ ai nhắn cho mình là mình có con bot tự động nhắn lại cho clone",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Erich Nguyễn",
+            "URL Owner": "https://m.facebook.com/lam123.nguyenle.50?groupid=364997627165697&__tn__=R",
+            "Cmt": "mình vừa thử thì facebook báo vày là sao các bác??",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Erich Nguyễn là bạn đang bước vô con đường lập trình viên rồi á",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Erich Nguyễn",
+                    "URL Owner": "https://m.facebook.com/lam123.nguyenle.50?groupid=364997627165697&__tn__=R",
+                    "Cmt": "có khi nào nghịch nghịch bị \"hack\" face luôn không nhỉ :D",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hưng Nguyễn",
+                    "URL Owner": "https://m.facebook.com/hungNEU.HD?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Erich Nguyễn nó khuyên nếu bác không phải Imposter thì hãy thành thật không thì bị bay acc đó🐧",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Bùi Thanh Lâm",
+            "URL Owner": "https://m.facebook.com/thanhlam.bui.it?groupid=364997627165697&__tn__=R",
+            "Cmt": "Cái này nó không khó, nhưng bài viết này thú vị ở cách dẫn dắt, giải quyết vấn đề. Bác nào pro biết rồi thì có thể lướt qua mà :D",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Chu Tuấn Kiệt",
+            "URL Owner": "https://m.facebook.com/toilahs12?groupid=364997627165697&__tn__=R",
+            "Cmt": "Fork lẹ về ngẫm",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phạm Thành Nam",
+            "URL Owner": "https://m.facebook.com/ptn1411?groupid=364997627165697&__tn__=R",
+            "Cmt": "tin đó được lưu vòa đâu đó ad",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Học Trần Thái",
+                    "URL Owner": "https://m.facebook.com/tranthai.hoc.946?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Phạm Thành Nam làm phát a",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Luan Van Phan",
+            "URL Owner": "https://m.facebook.com/luanphan.qn?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyên lý là nó lưu toàn bộ tin nhắn vào ra của mess từ lúc cài extension.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Tiến Danh",
+            "URL Owner": "https://m.facebook.com/danh.nguyentien.92?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Quốc Anh m học cái lày à",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Triệu Bảo",
+            "URL Owner": "https://m.facebook.com/trb.it.03?groupid=364997627165697&__tn__=R",
+            "Cmt": "Cái này có xem lại tin nhắn trong nhóm đã gỡ không bạn, cái kb2a tool tôi đăng ký chỉ xem được mỗi tin nhắn giữa 2 người thôi",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Triệu Bảo được á bạn, nhưng mà trong console nên hơi khó xem lịch sử, mình cũng chưa hiển thị tin nhắn của ai gửi, nên nếu muốn đẹp bác cứ dùng kb2atool nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Trọng Bình",
+                    "URL Owner": "https://m.facebook.com/binhake?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Triệu Bảo trong nhóm vẫn hiển thị mà bạn?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Truong Dang Duong",
+                    "URL Owner": "https://m.facebook.com/duongdzin?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Triệu Bảo bác lên premium là xem được hết nhé",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Ngọc Chính",
+            "URL Owner": "https://m.facebook.com/chinh.uit?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Ngân sáng mới nói",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Van Le",
+            "URL Owner": "https://m.facebook.com/gijgrastpert?groupid=364997627165697&__tn__=R",
+            "Cmt": "Có xem được video đã gỡ không ạ?",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Bùi Nguyễn Quang Duy",
+                    "URL Owner": "https://m.facebook.com/S0uBoX?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Van Le ko",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Van Le",
+                    "URL Owner": "https://m.facebook.com/gijgrastpert?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Bùi Nguyễn Quang Duy tiếc thế, lại không download về được",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Vũ Phong",
+            "URL Owner": "https://m.facebook.com/phongltktv?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hay quáaa",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Cẩm Ngọc",
+            "URL Owner": "https://m.facebook.com/rain.rain.1204?groupid=364997627165697&__tn__=R",
+            "Cmt": "Ngọc Quỳnh u là tròi",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Ngọc Quỳnh",
+                    "URL Owner": "https://m.facebook.com/littlelonelylebx?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Cẩm Ngọc thành dev nhờ soulmate tôi cà giựt cà hẩy",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đỗ Đức Hiệp",
+            "URL Owner": "https://m.facebook.com/duchiep.do.568?groupid=364997627165697&__tn__=R",
+            "Cmt": "Có khả năng chèn tin nhắn bất kỳ vào khoảng thời gian quá khứ trong mess ko thớt",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đỗ Đức Hiệp làm được thế thì mình vào làm cho fb rồi bác 😂",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đỗ Đức Hiệp",
+                    "URL Owner": "https://m.facebook.com/duchiep.do.568?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran ok thớt, chúc thớt một buổi tối vui vẻ",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Thắng Vương",
+            "URL Owner": "https://m.facebook.com/desod.profile.here?groupid=364997627165697&__tn__=R",
+            "Cmt": "các tin nhắn từ lâu rồi có xem lại dc ko vậy mn ?",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Cao Minh",
+                    "URL Owner": "https://m.facebook.com/caominh2202?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng Vương nếu thời điểm thu hồi tin nhắn đã cài ext vào rồi thì mới xem đc nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thắng Vương",
+                    "URL Owner": "https://m.facebook.com/desod.profile.here?groupid=364997627165697&__tn__=R",
+                    "Cmt": "uhm, buồn ghê.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Vũ",
+                    "URL Owner": "https://m.facebook.com/nguyenvuzxc1?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Thắng Vương nếu có db hay chỗ nào đó để lưu thì đc nha",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyen Duy Tung",
+            "URL Owner": "https://m.facebook.com/Rye1611?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đã tặng bác một star 😁 rất hữu ích",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyên Em",
+            "URL Owner": "https://m.facebook.com/kun.nguyen.1023?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đọc đc cmt zalo thì thôi... :))",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Minh Khang",
+                    "URL Owner": "https://m.facebook.com/TranNgocMinhKhang?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Nguyên Em kéo về phiên bản cũ ấy",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyên Em",
+                    "URL Owner": "https://m.facebook.com/kun.nguyen.1023?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Minh Khang để test",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Minh Cảnh",
+                    "URL Owner": "https://m.facebook.com/mcn271?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Minh Khang ko được đâu bác ạ =))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Vũ Quân",
+            "URL Owner": "https://m.facebook.com/shvqn?groupid=364997627165697&__tn__=R",
+            "Cmt": "vẫn chưa biết làm như lào :)",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vũ Quân bạn vào link github mình đưa, rồi tải code về, giải nén ra, rồi vào trang quản lý extensions của trình duyệt bạn dùng, rồi kéo thả folder đã giải nén vào là xong nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Quân",
+                    "URL Owner": "https://m.facebook.com/shvqn?groupid=364997627165697&__tn__=R",
+                    "Cmt": "ròi làm sao để xem tn ạ",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Quân",
+                    "URL Owner": "https://m.facebook.com/shvqn?groupid=364997627165697&__tn__=R",
+                    "Cmt": "em làm đến đó xong ấn vào ext nó không hiện ra cái gì cả",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vũ Quân Bạn ấn F12 để mở giao diện console nhé, toàn bộ tin nhắn tới và đi mình sẽ hiển thị trong đó. Nếu có ai đó thu hồi tin nhắn, thì bạn chỉ cần vô đó coi lại lịch sử tin nhắn là xong",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nam Thành",
+            "URL Owner": "https://m.facebook.com/NguyenThanhNam1601?groupid=364997627165697&__tn__=R",
+            "Cmt": "để test thử, cảm ơn chủ tus :>",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Chính",
+            "URL Owner": "https://m.facebook.com/9hx99x?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hóng bản Zalo hehehe",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Thiện",
+            "URL Owner": "https://m.facebook.com/bo.jackie?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đặng Hữu Tân chú Tân làm mấy này đc khum",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Đặng Hữu Tân",
+                    "URL Owner": "https://m.facebook.com/YunSugoi?groupid=364997627165697&__tn__=R",
+                    "Cmt": "em bên đồ hoạ 3d chứ ko bên cốt đơ :v",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Gia Thịnh",
+            "URL Owner": "https://m.facebook.com/giathinhmmo?groupid=364997627165697&__tn__=R",
+            "Cmt": "tks bác <3",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoa Tú",
+            "URL Owner": "https://m.facebook.com/mot.net.7?groupid=364997627165697&__tn__=R",
+            "Cmt": "làm cho zalo đi thớt",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoa Tú zalo web mình mới xem thử thì nó không dùng websocket á bác, kiểu này không đem áp dụng qua được rồi",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Hoàng Phúc",
+            "URL Owner": "https://m.facebook.com/pennnguinnn?groupid=364997627165697&__tn__=R",
+            "Cmt": "Bổ ích đấy, nếu bài viết xuất hiện sớm hơn 2 năm trước thì có lẽ tôi rất cần. Còn giờ chẳng quan tâm mấy, ai cho đọc thì đọc không thì thôi. Dù sao cảm ơn bro rất nhiều.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dat D. Le",
+            "URL Owner": "https://m.facebook.com/ichbindat168?groupid=364997627165697&__tn__=R",
+            "Cmt": "Có bản cho instagram không bác",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyen Quang",
+                    "URL Owner": "https://m.facebook.com/profile.php?id=100054217187849&groupid=364997627165697&__tn__=R",
+                    "Cmt": "Dat D. Le ôi mình cũng cần cho ig",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Dat D. Le úi insta cũng có websocket chat nè, cùng tạo bởi fb có khác, chắc chỉnh sửa xíu là đem qua cũng chạy được á",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Dat D. Le",
+                    "URL Owner": "https://m.facebook.com/ichbindat168?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran bác chỉnh giúp em r share lại trên github đc không ạ? Tks bác nhiều",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trực Công Trần",
+            "URL Owner": "https://m.facebook.com/truccong.tran?groupid=364997627165697&__tn__=R",
+            "Cmt": "ghim ghim cực mạnh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Bảo",
+            "URL Owner": "https://m.facebook.com/bao.nguyen3006?groupid=364997627165697&__tn__=R",
+            "Cmt": "saved ❤ thanks bác",
+            "Number reply": 0
+        },
+        {
+            "Owner": "TK Hoa",
+            "URL Owner": "https://m.facebook.com/bo.cua.Mikey.90?groupid=364997627165697&__tn__=R",
+            "Cmt": "Trịnh Thị Hạnh.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoàng Thùy Nhung",
+            "URL Owner": "https://m.facebook.com/htnhunghii?groupid=364997627165697&__tn__=R",
+            "Cmt": "Quào :o",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Vũ Minh",
+            "URL Owner": "https://m.facebook.com/nvuminhh?groupid=364997627165697&__tn__=R",
+            "Cmt": "chỉ đc nếu đang chat bằng trình duyệt đc không b\ncòn ngta nhắn r thu hồi mà mình không bật trình duyệt sẽ không đc ?",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoàng Minh Dương",
+                    "URL Owner": "https://m.facebook.com/chuxithelooser?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Vũ Minh hóng hihihuhu",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Đúng rồi bạn",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Sơn Thiên",
+            "URL Owner": "https://m.facebook.com/pocapoca0001?groupid=364997627165697&__tn__=R",
+            "Cmt": "Mình hứng thú nhiều hơn với regex :v\nCác trùm regex giải thích giúp mình với :3",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Sơn Thiên mình có giải thích trong mô tả của hình rồi nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Sơn Thiên",
+                    "URL Owner": "https://m.facebook.com/pocapoca0001?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran Chắc mình phải học thêm về regex chứ nhiều cái đọc hiểu được :v",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Tô Hiệu",
+            "URL Owner": "https://m.facebook.com/ngtohieu?groupid=364997627165697&__tn__=R",
+            "Cmt": "bổ ích :v",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Dat",
+            "URL Owner": "https://m.facebook.com/boy.nanh.nung9x?groupid=364997627165697&__tn__=R",
+            "Cmt": "Vậy là dù bên kia thu hồi tin nhắn mình vẫn xem lại được🤔 hay thật",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoàng Duy",
+            "URL Owner": "https://m.facebook.com/hades.y2k.cih?groupid=364997627165697&__tn__=R",
+            "Cmt": "Lê Quốc Bình kb2a =)))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phan Phát Tài",
+            "URL Owner": "https://m.facebook.com/TaiTitans?groupid=364997627165697&__tn__=R",
+            "Cmt": "Coi lại hình ảnh đối phương đã gỡ k được bác ạ .",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Bạch Cảnh",
+            "URL Owner": "https://m.facebook.com/canh.dz.2811?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Văn Bảo gắt chưa :)))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Văn Đoàn",
+            "URL Owner": "https://m.facebook.com/vandoan92.uit?groupid=364997627165697&__tn__=R",
+            "Cmt": "À tiện thể cho e hỏi luôn có bác nào bị tạo file kiểu như này sau khi cài Redis không nhỉ: RedisQFork_xxxx.dat, mỗi ngày nó tặng e 15GB chiếm dụng ổ cứng xong toang luôn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Tuấn Minh",
+            "URL Owner": "https://m.facebook.com/mixi04?groupid=364997627165697&__tn__=R",
+            "Cmt": "Em để đây lát xem lại ạ:))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Triết Bùi",
+            "URL Owner": "https://m.facebook.com/trietbui89?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nếu thực sự đối tác đã thu hồi tin nhắn, hẵng phải có lý do... Đọc được có khi hiểu nhầm 😊, an nhiên đi cho đời thêm phẻ 😊😊",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Văn Hoàng Phúc",
+            "URL Owner": "https://m.facebook.com/vanhoang.phuc.28122011?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nghĩa là không thể khôi phuc tin nhắn đã xóa trước đó mà chỉ có thể khôi phục lại tin nhắn sau khi chạy script đó thôi à bác? Chán nhỉ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Vọng Tích",
+            "URL Owner": "https://m.facebook.com/justahomelesstokki?groupid=364997627165697&__tn__=R",
+            "Cmt": "chời ơiiiiiiiiiiiiiiiii",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Văn Ký",
+            "URL Owner": "https://m.facebook.com/vasiga123?groupid=364997627165697&__tn__=R",
+            "Cmt": "Quý Thím",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hồ Nhật Huy",
+            "URL Owner": "https://m.facebook.com/tahn.huy?groupid=364997627165697&__tn__=R",
+            "Cmt": "Trường Giang",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lâm",
+            "URL Owner": "https://m.facebook.com/iamlam15cm?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hay vai :))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Anh Trương",
+            "URL Owner": "https://m.facebook.com/bigbosstvc?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hay quá bác, em cay cái trò thu hồi tin này lâu lắm rồi, bác viết ext cho firefox đc k :))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Tấn Nhật Trần",
+            "URL Owner": "https://m.facebook.com/1102tnt?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đỉnh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Nhật Thức",
+            "URL Owner": "https://m.facebook.com/nhatthucfi?groupid=364997627165697&__tn__=R",
+            "Cmt": "hay quad",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Chu Thế Anh",
+            "URL Owner": "https://m.facebook.com/1411.theanh?groupid=364997627165697&__tn__=R",
+            "Cmt": "em vừa test thì thấy nó bị lung tung giữa các tin nhắn với nhau rồi em còn thấy cả post nữa chứ k phải riêng tin nhắn ._.",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Chu Thế Anh do hiện tại chưa biết cách phân biệt các luồng dữ liệu sap cho phù hợp á bạn, có nhiều luồng nó giống nhau nên nó tưởng tin nhắn luôn",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Võ Kế Khoa",
+            "URL Owner": "https://m.facebook.com/khoapc3?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hoang Vuong hồi trc hình như a có làm 1 vụ gần giống :v",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Vuong",
+                    "URL Owner": "https://m.facebook.com/HoangVuong2010?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Võ Kế Khoa giờ bận gòi em :)))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Thị Ngọc Huyền",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100061436393476&groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Trung Anh xem rồi làm cho tao",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nam Hoàng",
+            "URL Owner": "https://m.facebook.com/BBluver?groupid=364997627165697&__tn__=R",
+            "Cmt": "Tôi vừa du hành thời gian hả",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Cao Huy Cường",
+            "URL Owner": "https://m.facebook.com/cuong.caohuy.37?groupid=364997627165697&__tn__=R",
+            "Cmt": ":)) tự xóa bài luôn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trọng Khôi",
+            "URL Owner": "https://m.facebook.com/trongkhoi.user?groupid=364997627165697&__tn__=R",
+            "Cmt": "Vjp pro",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoàng Nguyễn",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100003976727951&groupid=364997627165697&__tn__=R",
+            "Cmt": "Phong Dương",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Vũ",
+            "URL Owner": "https://m.facebook.com/nguyenvuzxc1?groupid=364997627165697&__tn__=R",
+            "Cmt": "cách này thì khá là hay, mình nghĩ nếu lưu vào localstorage hay chrome storage api thì sẽ hay hơn ấy nhỉ? làm thêm cái ui để xóa tin nhân cũ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nhựt Phát",
+            "URL Owner": "https://m.facebook.com/NFat2512?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nhiều lúc mệt mỏi thật 🤣",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Long",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100011486830547&groupid=364997627165697&__tn__=R",
+            "Cmt": "cho hỏi cái này bị cái gì vậy các bác :v. vào ko đc nơi😕",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Tâm Nguyễn",
+            "URL Owner": "https://m.facebook.com/TN32Z?groupid=364997627165697&__tn__=R",
+            "Cmt": "Ông nào chỉ cách tải ảnh bị gỡ với 😂",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lê Gia Huy",
+            "URL Owner": "https://m.facebook.com/huygiale11?groupid=364997627165697&__tn__=R",
+            "Cmt": "Trần Quang Trí tự làm luôn nè =))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Vũ Đức Công",
+            "URL Owner": "https://m.facebook.com/conggbunchan?groupid=364997627165697&__tn__=R",
+            "Cmt": "KB2A nghe quen thế nhỉ?",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Quốc Anh",
+            "URL Owner": "https://m.facebook.com/NguyenQuocAnh.1710?groupid=364997627165697&__tn__=R",
+            "Cmt": "Trần Anh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lương Hào Nam",
+            "URL Owner": "https://m.facebook.com/nam.kaio.69?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hoàng Vũ Gia Thông",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dũng Đàm",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100041357176066&groupid=364997627165697&__tn__=R",
+            "Cmt": "GG",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Thanh Lam",
+            "URL Owner": "https://m.facebook.com/thanhlamko?groupid=364997627165697&__tn__=R",
+            "Cmt": "quá hay",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Tùng",
+            "URL Owner": "https://m.facebook.com/vtkun04?groupid=364997627165697&__tn__=R",
+            "Cmt": "Cứ có sẵn mà xài. Chứ này có video làm theo cũng k đc 🤣",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Mạnh Thế Tài",
+            "URL Owner": "https://m.facebook.com/thetaipy?groupid=364997627165697&__tn__=R",
+            "Cmt": "cho em hỏi kb2a fix rồi hay sao mình xem nữa không dc nhỉ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nhân Châu KP",
+            "URL Owner": "https://m.facebook.com/chauthainhan?groupid=364997627165697&__tn__=R",
+            "Cmt": "Máy cái này dễ như ăn cơm ấy, bạn làm được hay không thì mình cũng đi ăn cơm đây 😂",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Mai My",
+            "URL Owner": "https://m.facebook.com/maimy641?groupid=364997627165697&__tn__=R",
+            "Cmt": "Mắt ko thấy, tim ko đau",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phong Cool",
+            "URL Owner": "https://m.facebook.com/phongcool97?groupid=364997627165697&__tn__=R",
+            "Cmt": "tin nhắn xóa lâu rồi có xem được ko nhỉ. :3",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phi Đao Trảm",
+            "URL Owner": "https://m.facebook.com/daotramphi?groupid=364997627165697&__tn__=R",
+            "Cmt": "Mid Mid",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Ngân Thục",
+            "URL Owner": "https://m.facebook.com/ngthuc27?groupid=364997627165697&__tn__=R",
+            "Cmt": "nhận ra mình xoá cuộc trò chuyện chứ ko phải gỡ 🥲",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Đức Lê",
+            "URL Owner": "https://m.facebook.com/levuminhduc592000?groupid=364997627165697&__tn__=R",
+            "Cmt": "Saved :v, cẳm ơn bác, xíu đọc ạ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Tiến Đạt",
+            "URL Owner": "https://m.facebook.com/shindz198?groupid=364997627165697&__tn__=R",
+            "Cmt": "Xịn ạ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Vũ",
+            "URL Owner": "https://m.facebook.com/profile.php?id=100012725981822&groupid=364997627165697&__tn__=R",
+            "Cmt": ". Đây tý nghiên cứu",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lương Gia Huy",
+            "URL Owner": "https://m.facebook.com/hymeu2212?groupid=364997627165697&__tn__=R",
+            "Cmt": "kiến thức này đã đc tiếp thu =~=",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Đức Trung",
+            "URL Owner": "https://m.facebook.com/trung.da.9?groupid=364997627165697&__tn__=R",
+            "Cmt": "Có những mắt không thấy tim k đau ad :))))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lê Văn Minh",
+            "URL Owner": "https://m.facebook.com/Fillbrick?groupid=364997627165697&__tn__=R",
+            "Cmt": "tuần trước thầy mới giảng về socket xong mà quên hết rồi =)))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Xuân Phú",
+            "URL Owner": "https://m.facebook.com/nguyenxuanphu.profile?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đã saved lại :3 chút đọc",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Khang",
+            "URL Owner": "https://m.facebook.com/TranNgocMinhKhang?groupid=364997627165697&__tn__=R",
+            "Cmt": "Đức Thiện",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Pham Ngoc Thanh",
+            "URL Owner": "https://m.facebook.com/ThanhPn.A1B2?groupid=364997627165697&__tn__=R",
+            "Cmt": "hay",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Hoàng Hà",
+            "URL Owner": "https://m.facebook.com/HaRuNgu2309?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hoa Doan",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Thanh Hoàng",
+            "URL Owner": "https://m.facebook.com/thanhhoang.nguyen.7334?groupid=364997627165697&__tn__=R",
+            "Cmt": "Vu Hoang Nhan giải thích cho tao",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Truong Dang Duong",
+            "URL Owner": "https://m.facebook.com/duongdzin?groupid=364997627165697&__tn__=R",
+            "Cmt": "Hay",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Ngọc Tùng",
+            "URL Owner": "https://m.facebook.com/ngoctung2705?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Hải Nam",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lan Van Ho",
+            "URL Owner": "https://m.facebook.com/lan.hovan.378?groupid=364997627165697&__tn__=R",
+            "Cmt": "Nguyễn Thành Hưng xem rồi làm rồi giải thích cho t..",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoang Ngoc Ha",
+            "URL Owner": "https://m.facebook.com/hngochoe.18?groupid=364997627165697&__tn__=R",
+            "Cmt": "Lê Minh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Minh Ngọc",
+            "URL Owner": "https://m.facebook.com/tamayoko?groupid=364997627165697&__tn__=R",
+            "Cmt": ". Bao giờ hiểu thì làm :((((",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Văn Ký",
+            "URL Owner": "https://m.facebook.com/vasiga123?groupid=364997627165697&__tn__=R",
+            "Cmt": "Quý Thím",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hoang Tran",
+            "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+            "Cmt": "chạy rồi chạy rồi :)))) mọi người sắp được dùng extension ngon rồi, giờ chỉnh lại giao diện cho đẹp là lên kệ được rồi nhé",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoang Tran",
+                    "URL Owner": "https://m.facebook.com/99.hoangtran?groupid=364997627165697&__tn__=R",
+                    "Cmt": "version 2 ra rồi nhé: https://www.facebook.com/groups/j2team.community/posts/1651683238497123",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Minh",
+                    "URL Owner": "https://m.facebook.com/lesy.hoangminh?groupid=364997627165697&__tn__=R",
+                    "Cmt": "Hoang Tran phải cài extension này trc khi xoá đúng k anh? Chứ xoá r cài đâu dùng đc đâu hả",
+                    "Number reply": 0
+                }
+            ]
+        }
+    ]
+}

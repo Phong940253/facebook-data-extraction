@@ -14,8 +14,8 @@ load_dotenv()
 USERNAME = os.getenv('USERNAME_FACEBOOK')
 PASSWORD = os.getenv('PASSWORD')
 
-modeScroll = ""
-maxScroll = 5
+modeScroll = "INFINITY"
+maxScroll = 50
 sleepTime = 2
 maxViewMore = 20
 
@@ -24,7 +24,7 @@ def initDriver():
     CHROMEDRIVER_PATH = 'chromedriver'
     WINDOW_SIZE = "1000,2000"
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('disable-infobars')
@@ -242,7 +242,7 @@ def getPoster(driver, postId):
                     break
                 for x in viewMoreReply:
                     try:
-                        print(x.text)
+                        # print(x.text)
                         x.click()
                     except BaseException:
                         continue

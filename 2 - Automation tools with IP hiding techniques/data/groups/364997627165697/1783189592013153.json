@@ -1,0 +1,18 @@
+{
+    "URL post": "https://touch.facebook.com/1783189592013153",
+    "Content": "Chào mọi người chúc mọi người một ngày vui vẻ. Hôm nay mình muốn chia sẻ một phương pháp distributed cache.\nCaching là một kỹ thuật được sử dụng để tăng tải của hệ thống.\nTuy nhiên trong hệ thống phân tán thì chúng ta cần có một cách để distributed cache cho các service. Một cách thường được sử dụng là sử dụng các in-mem database như :redis, memcache,...\nTrong hệ thống có tải cao việc thường xuyển request lên redis để lấy giá trị mới nhất của cache sẽ rất tốn tài nguyên và gây chậm hệ thống xuống.\nHôm nay sau khi đã âm tính với covid mình xin chia sẻ một cách để giúp mọi người thực hiện distributed cache mà không cần dựa vào các in-mem data cho mang đến tốc độ nhanh nhất cho hệ thống của bạn.\nNếu áp dụng được mình xin 1 sao github nhé. #distributed #cache #j2team_share #j2team_tutorial",
+    "Comment": [
+        {
+            "Owner": "Nguyễn Huệ",
+            "URL Owner": "https://m.facebook.com/nguyen.hue.7773?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "Hay quá c ơiii",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Văn Dem",
+            "URL Owner": "https://m.facebook.com/dem.tran.1?groupid=364997627165697&refid=18&__tn__=R",
+            "Cmt": "link github https://github.com/trandem/blog",
+            "Number reply": 0
+        }
+    ]
+}
