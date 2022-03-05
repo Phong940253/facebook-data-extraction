@@ -6,7 +6,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 import os
 from time import sleep
-import json
 from dotenv import load_dotenv
 
 load_dotenv()
