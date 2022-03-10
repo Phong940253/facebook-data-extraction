@@ -210,6 +210,14 @@ def getPoster(driver, postId):
                 '//*[@class="_5rgt _5nk5"]/div | //*[@class="msg"]/div')
         except BaseException:
             return None
+
+        # Get time
+        time = driver.find_element_by_css_selector(
+            '._5rgr.async_like')
+        jsonTime = time.get_attribute(
+            "data-ft").split('publish_time":')[1].split(',')[0]
+        infoPost['timestamp'] = jsonTime
+
         # print(contentPosts.text)
 
         # Click view more button
