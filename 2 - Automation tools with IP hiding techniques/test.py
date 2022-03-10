@@ -19,11 +19,12 @@ sleepTime = 2
 maxViewMore = 20
 
 
-def initDriver():
+def initDriver(headless=True):
     CHROMEDRIVER_PATH = 'chromedriver'
     WINDOW_SIZE = "1000,2000"
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    if headless:
+        chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('disable-infobars')
@@ -44,7 +45,7 @@ def initDriver():
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument(
         "--disable-blink-features=AutomationControllered")
-    chrome_options.add_experimental_option('useAutomationExtension', False)
+    # chrome_options.add_experimental_option('useAutomationExtension', False)
     prefs = {"profile.default_content_setting_values.notifications": 2}
     chrome_options.add_experimental_option("prefs", prefs)
     # # open Browser in maximized mode
@@ -74,6 +75,15 @@ def initDriver():
     driver = webdriver.Chrome(CHROMEDRIVER_PATH,
                               options=chrome_options
                               )
+    return driver
+
+
+def loadExtensionVPN(driver):
+    driver.get(
+        "chrome-extension://bihmplhobchoageeokmgbdihknkjbknd//panel//index.html")
+    connectButton = driver.find_element_by_css_selector("#ConnectionButton")
+    if "Stop" not in connectButton.text:
+        connectButton.click()
     return driver
 
 
