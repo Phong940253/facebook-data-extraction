@@ -19,12 +19,18 @@ sleepTime = 2
 maxViewMore = 20
 
 
-def initDriver(headless=True):
+def initDriver(headless=True, usingProfile=False):
     CHROMEDRIVER_PATH = 'chromedriver'
     WINDOW_SIZE = "1000,2000"
     chrome_options = Options()
     if headless:
         chrome_options.add_argument("--headless")
+    if usingProfile:
+        # print(f"--user-data-dir={os.getenv('USER_DATA_PATH')}")
+        chrome_options.add_argument(
+            f"--user-data-dir={os.getenv('USER_DATA_PATH')}")
+        chrome_options.add_argument(
+            f"--profile-directory={os.getenv('PROFILE_NAME')}")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('disable-infobars')
@@ -48,19 +54,19 @@ def initDriver(headless=True):
     # chrome_options.add_experimental_option('useAutomationExtension', False)
     prefs = {"profile.default_content_setting_values.notifications": 2}
     chrome_options.add_experimental_option("prefs", prefs)
-    # # open Browser in maximized mode
+    # open Browser in maximized mode
     chrome_options.add_argument("--start-maximized")
-    # # overcome limited resource problems
+    # overcome limited resource problems
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_experimental_option(
         "excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option(
         "prefs", {"profile.managed_default_content_settings.images": 2})
-    # chrome_options.add_argument('disable-infobars')
 
-    chrome_options.add_argument('--incognito')
-    chrome_options.add_argument(
-        '--disable-blink-features=AutomationControlled')
+    # # Incognito
+    # # chrome_options.add_argument('--incognito')
+    # chrome_options.add_argument(
+    #     '--disable-blink-features=AutomationControlled')
 
     # chrome_options.add_experimental_option('prefs', {
     #     'profile.managed_default_content_settings.images': 2,
@@ -81,6 +87,7 @@ def initDriver(headless=True):
 def loadExtensionVPN(driver):
     driver.get(
         "chrome-extension://bihmplhobchoageeokmgbdihknkjbknd//panel//index.html")
+    sleep(3)
     connectButton = driver.find_element_by_css_selector("#ConnectionButton")
     if "Stop" not in connectButton.text:
         connectButton.click()
