@@ -8,8 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 import os
 from time import sleep
 import json
-import numpy as np
-import pandas as pd
 
 # list file post
 import glob
@@ -20,9 +18,10 @@ listPostFile = []
 for postFile in groupPagePost:
     listPostFile.append(postFile.split("\\")[-1].split(".")[0])
 
-cookie = 'cookie: datr=zCl1YfSOcGf17m9dXXY7eSaB; sb=zg8HYr27z2Eze4zpOblULwod; dpr=1.25; locale=vi_VN; wd=1488x754; c_user=100078509210570; xs=2%3AdK7lsdMi8XwFoQ%3A2%3A1646105133%3A-1%3A-1; fr=0MRspGNSQYfr6Brep.AWWETuMAYWgC08UmlQDDNmoo6UM.BiHNcs.jK.AAA.0.0.BiHZJM.AWXjlK0yd7A; presence=C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1646105170400%2C%22v%22%3A1%7D'
-driver = initDriver()
-# driver.get('https://touch.facebook.com/')
+# cookie = 'cookie: datr=zCl1YfSOcGf17m9dXXY7eSaB; sb=zg8HYr27z2Eze4zpOblULwod; dpr=1.25; locale=vi_VN; wd=1488x754; c_user=100078509210570; xs=2%3AdK7lsdMi8XwFoQ%3A2%3A1646105133%3A-1%3A-1; fr=0MRspGNSQYfr6Brep.AWWETuMAYWgC08UmlQDDNmoo6UM.BiHNcs.jK.AAA.0.0.BiHZJM.AWXjlK0yd7A; presence=C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1646105170400%2C%22v%22%3A1%7D'
+driver = initDriver(headless=False, usingProfile=True)
+# driver = loadExtensionVPN(driver)
+# sleep(5)
 
 namePage = [
     'groups/364997627165697',
@@ -38,7 +37,7 @@ namePage = [
 ]
 
 # sleep(2)
-driver = loginFacebook(driver)
+# driver = loginFacebook(driver)
 # loginFacebookByCookie(driver ,cookie)
 sleep(4)
 print("start crawl")

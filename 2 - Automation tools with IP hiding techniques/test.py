@@ -5,16 +5,26 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 import os
-from time import sleep
+from time import sleep, time
 from dotenv import load_dotenv
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time()
+        func(*args, **kwargs)
+        end = time()
+        print('=> Loading time:', end - start)
+    return wrapper
+
 
 load_dotenv()
 
 USERNAME = os.getenv('USERNAME_FACEBOOK')
 PASSWORD = os.getenv('PASSWORD')
 
-modeScroll = "INFINITY"
-maxScroll = 50
+modeScroll = "INFINIT"
+maxScroll = 1
 sleepTime = 2
 maxViewMore = 20
 
@@ -31,7 +41,7 @@ def initDriver(headless=True, usingProfile=False):
             f"--user-data-dir={os.getenv('USER_DATA_PATH')}")
         chrome_options.add_argument(
             f"--profile-directory={os.getenv('PROFILE_NAME')}")
-    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    # chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('disable-infobars')
     chrome_options.add_argument(
@@ -187,21 +197,24 @@ def outCookie(driver):
         print("loi login")
 
 
+# @timer
 def getCmt(parent):
     try:
         infoCmt = {}
-        mainPart = parent.find_element_by_xpath(
-            './div/div[@class="_2b06"] | ./div[@class="_2b06"]')
-        owner = mainPart.find_element_by_xpath('./div[@class="_2b05"]').text
-        infoCmt['Owner'] = owner
-        url_owner = mainPart.find_element_by_xpath(
-            './div[@class="_2b05"]/a').get_attribute('href')
-        infoCmt['URL Owner'] = url_owner
-        text = mainPart.find_element_by_xpath(
-            './div[not(@class="_2b05")]').text
+        try:
+            owner = parent.find_element_by_css_selector("._2b05").text
+            infoCmt['Owner'] = owner
+        except Exception as e:
+            print(e)
+
+        # url_owner = mainPart.find_element_by_xpath(
+        #     './div[@class="_2b05"]/a').get_attribute('href')
+        # infoCmt['URL Owner'] = url_owner
+        text = parent.find_element_by_css_selector(
+            '[data-sigil="comment-body"]').text
         infoCmt['Cmt'] = text
-        replyCmt = parent.find_elements_by_xpath(
-            './div[@class="_2a_m"]/div/div[@class="_2a_i"]/div[@class="_2b04"]')
+
+        replyCmt = parent.find_elements_by_css_selector('._2a_m ._2a_i ._2b04')
         infoCmt['Number reply'] = len(replyCmt)
         if len(replyCmt) > 0:
             print(f"Comment của {owner} này có {len(replyCmt)} reply")
@@ -212,44 +225,71 @@ def getCmt(parent):
             infoCmt["Reply cmt"] = listReply
             print("Đã lấy xong reply :)")
         return infoCmt
-    except BaseException:
-        pass
+    except Exception as e:
+        print(e)
 
 
+# @timer
 def getPoster(driver, postId):
     try:
         print(f"Đang lấy thông tin của post có ID là {postId}")
         infoPost = {}
         infoPost['URL post'] = "https://touch.facebook.com/" + str(postId)
         driver.get("https://touch.facebook.com/" + str(postId))
+
+        contentPosts = ""
         try:
-            contentPosts = driver.find_element_by_xpath(
-                '//*[@class="_5rgt _5nk5"]/div | //*[@class="msg"]/div')
-        except BaseException:
-            return None
+            contentPosts = driver.find_element_by_css_selector(
+                '._5rgr.async_like')
+        except Exception as e:
+            print(e)
+
+        try:
+            media = driver.find_element_by_css_selector('._5rgu._7dc9._27x0')
+            infoPost['Has media'] = True
+            Images = media.find_elements_by_css_selector('a')
+            if len(Images) > 0:
+                infoPost['Media'] = []
+                for image in Images:
+                    infoPost['Media'].append(image.get_attribute('href'))
+        except Exception as e:
+            infoPost['Has media'] = False
+            print("Post không có media")
 
         # Get time
-        time = driver.find_element_by_css_selector(
-            '._5rgr.async_like')
-        jsonTime = time.get_attribute(
-            "data-ft").split('publish_time":')[1].split(',')[0]
-        infoPost['timestamp'] = jsonTime
+        # time = driver.find_element_by_css_selector(
+        #     '._5rgr.async_like')
+        # jsonTime = time.get_attribute(
+        #     "data-ft").split('publish_time":')[1].split(',')[0]
+        # infoPost['Timestamp'] = jsonTime
 
         # print(contentPosts.text)
 
         # Click view more button
         numViewMore = 0
         try:
+            last_height = driver.execute_script(
+                "return document.body.scrollHeight")
+
             while True:
                 numViewMore += 1
                 viewMoreButton = driver.find_element_by_css_selector("._108_")
                 if viewMoreButton is None or numViewMore > maxViewMore:
                     break
                 viewMoreButton.click()
+
                 print(f"Click view more button {numViewMore} time")
                 sleep(3)
-        except BaseException:
-            pass
+
+                new_height = driver.execute_script(
+                    "return document.body.scrollHeight")
+                if new_height == last_height:
+                    break
+
+                last_height = new_height
+
+        except Exception as e:
+            print("Không có bình luận cần tải thêm")
 
         infoPost["Content"] = contentPosts.text
         # Get text of comment
@@ -260,46 +300,26 @@ def getPoster(driver, postId):
                 numViewMoreReply += 1
                 if numViewMoreReply > 10:
                     break
-                viewMoreReply = driver.find_elements_by_xpath(
-                    '//*[@class="_2b1h async_elem"]/a')
+                viewMoreReply = driver.find_elements_by_css_selector(
+                    '[data-sigil="replies-see-more"]')
                 if viewMoreReply is None or len(viewMoreReply) == 0:
                     break
                 for x in viewMoreReply:
                     try:
                         # print(x.text)
                         x.click()
-                    except BaseException:
-                        continue
+                    except Exception as e:
+                        pass
+                        # print(e)
                 print(f"Click view more reply {len(viewMoreReply)} element")
                 sleep(4)
-        except BaseException:
-            pass
-
-        # try:
-        #     numViewMoreCmt = 0
-        #     while True:
-        #         numViewMoreCmt += 1
-        #         if numViewMoreCmt > 10:
-        #             break
-        #         viewMoreCmt = driver.find_elements_by_xpath(
-        #             '//div[@class="async_elem"]')
-        #         if viewMoreCmt is None:
-        #             break
-        #         viewMoreCmt.click()
-        #         for x in viewMoreCmt:
-        #             try:
-        #                 x.click()
-        #             except BaseException:
-        #                 continue
-        #         print(f"Click view more cmt")
-        #         sleep(sleepTime)
-        # except BaseException:
-        #     pass
+        except Exception as e:
+            print(e)
 
         listCmt = []
 
-        comments = driver.find_elements_by_xpath(
-            './/div[@class="_333v _45kb"]/div[contains(@class,"_2a_i")]/div[@class="_2b04"]')
+        comments = driver.find_elements_by_css_selector(
+            "div._2a_i[data-sigil='comment']")
         print(len(comments))
         if len(comments) == 0 or len(contentPosts.text) == 0:
             print("Post này ko có comment :(")
@@ -307,6 +327,8 @@ def getPoster(driver, postId):
         for comment in comments:
             listCmt.append(getCmt(comment))
         infoPost['Comment'] = listCmt
+        # print(infoPost)
+
         return infoPost
     except Exception as e:
         print("getPoster Failed")
