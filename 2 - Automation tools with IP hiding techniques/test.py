@@ -6,12 +6,14 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 import os
 from time import sleep
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
+# USERNAME = os.getenv('USERNAME_FACEBOOK')
+# PASSWORD = os.getenv('PASSWORD')
 USERNAME = os.getenv('USERNAME_FACEBOOK')
-PASSWORD = os.getenv('PASSWORD')
+PASSWORD = '0147258369'
 
 modeScroll = "INFINITY"
 maxScroll = 50
