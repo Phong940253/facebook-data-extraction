@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 import os
-<<<<<<< HEAD
 from time import sleep, time
 from dotenv import load_dotenv
 
@@ -20,20 +19,14 @@ def timer(func):
 
 
 load_dotenv()
-=======
-from time import sleep
-# from dotenv import load_dotenv
-
-# load_dotenv()
->>>>>>> 39595b8a3ab84f9617401ceb56badadd2f738e73
 
 # USERNAME = os.getenv('USERNAME_FACEBOOK')
 # PASSWORD = os.getenv('PASSWORD')
 USERNAME = os.getenv('USERNAME_FACEBOOK')
 PASSWORD = '0147258369'
 
-modeScroll = "INFINIT"
-maxScroll = 1
+modeScroll = "INFINITY"
+maxScroll = 50
 sleepTime = 2
 maxViewMore = 20
 
