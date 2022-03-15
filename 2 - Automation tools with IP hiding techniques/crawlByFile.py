@@ -11,8 +11,8 @@ import json
 
 # list file post
 import glob
-groupPost = glob.glob("data/*/*/*.json")
-pagePost = glob.glob("data/*/*.json")
+groupPost = glob.glob("rawData/*/*/*.json")
+pagePost = glob.glob("rawData/*/*.json")
 groupPagePost = groupPost + pagePost
 listPostFile = []
 for postFile in groupPagePost:
@@ -45,14 +45,14 @@ for page in namePage:
     try:
         dsPost = {}
         Id_List = getnumOfPost(driver, page)
-        if not os.path.exists(f'data/{page}'):
-            os.makedirs(f'data/{page}')
+        if not os.path.exists(f'rawData/{page}'):
+            os.makedirs(f'rawData/{page}')
         for idPost in Id_List:
             if (idPost in listPostFile):
                 continue
             DS = getPoster(driver, idPost)
             if DS is not None:
-                with open(f'data/{page}/{idPost}.json', "w", encoding="utf-8") as outfile:
+                with open(f'rawData/{page}/{idPost}.json', "w", encoding="utf-8") as outfile:
                     json.dump(DS, outfile, ensure_ascii=False)
             # dsPost[str(idPost)]= DS
         print('Success')
