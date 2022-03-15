@@ -341,6 +341,19 @@ def Scroll(driver, maxScroll):
     last_height = driver.execute_script("return document.body.scrollHeight")
     numScroll = 0
     while True:
+        try:
+            closeLoginButton = driver.find_element_by_css_selector("._4b-n")
+            closeLoginButton.click()
+        except Exception as e:
+            pass
+
+        try:
+            viewMorePost = driver.find_element_by_css_selector(
+                '.title.mfsm.fcl')
+            viewMorePost.click()
+        except Exception as e:
+            print("Không tim thấy nút 'xem thêm post'")
+
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
         print(f"Srolling {numScroll} time")
