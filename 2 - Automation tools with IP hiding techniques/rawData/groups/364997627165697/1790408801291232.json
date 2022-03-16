@@ -1,1 +1,52 @@
-{"URL post": "https://touch.facebook.com/1790408801291232", "Has media": true, "Media": ["https://m.facebook.com/photo.php?fbid=1001736620727293&id=100026728928778&set=gm.1790408801291232&source=57&refid=18&__tn__=EH-R"], "Content": "Nguyễn Hoàng Anh KhoaJ2TEAM Community\n10 tháng 3 lúc 09:05 ·\nChia sẻ mã nguồn công cụ triển khai dự án dotNET MVC\nMục tiêu:\n1. Giúp các dotNET developer rút ngắn thời gian duyệt qua từng thư mục và xoá những file không cần cho triển khai. Tự động hoá quá trình sao chép các tập tin cần thiết để triển khai theo tuỳ chọn.\n2. Giúp các bạn đang học lập trình shell script Windows (cmd batch) có thêm một use case tham khảo.\nTóm tắt chức năng chính: Sao chép các tập tin triển khai của một dự án dotNET MVC để thuận tiện mang đi triển khai.\nDo là công cụ nhà trồng cũng như trình độ viết script sơ đẳng nên anh em có ý kiến hoặc góp ý gì hay để phát triển thêm sản phẩm thì có thể comment bên dưới hoặc trên các kênh (github, fb cá nhân,...).\nChúc anh em thành công và phát triển!\nChi tiết xem tại: https://j2team.dev/go/c1e0f934\nHashtag: #j2team_share #j2team_dev #j2team_code #j2team_tool\n(Thanks admin hoặc mod duyệt bài)\nThích\nHiển thị thêm cảm xúc\nChia sẻ\nBình luận đã bị tắt cho bài viết này.\n9 lượt chia sẻ\nNguyễn Quang Thành\ncó facebook của ai không hiển thị mấy bài viết trong group trên bảng tin ko nhỉ? chỉ mình với!\nvào thứ 5ThíchBáo cáo\nHuỳnh Lâm đã trả lời · 6 phản hồi\nĐặng Xuân Bách\nCảm ơn bác nhiều!\nvào thứ 5ThíchBáo cáo", "Comment": [{"Owner": "Nguyễn Quang Thành", "Cmt": "có facebook của ai không hiển thị mấy bài viết trong group trên bảng tin ko nhỉ? chỉ mình với!", "Number reply": 6, "Reply cmt": [{"Owner": "Nguyễn Công Vĩnh", "Cmt": "Nguyễn Quang Thành bấm bỏ theo dõi group là nó k có nữa nhé ô", "Number reply": 0}, {"Owner": "Nguyễn Quang Thành", "Cmt": "Nguyễn Công Vĩnh ý là vẫn theo dõi tất cả các group nhưng ko hiện bài nào trên bảng tin ý, tao toàn phải vào group để đọc", "Number reply": 0}, {"Owner": "Phạm Văn Vương", "Cmt": "Nguyễn Quang Thành Tôi thì hay bị kiểu. Bài viết mấy ngày trước rồi fb nó mới hiển thị trên bảnng tin hoặc thông báo. Thường là 3 ngày", "Number reply": 0}, {"Owner": "Nguyễn Hoàng Anh Khoa", "Cmt": "Nguyễn Quang Thành Facebook gần đây có dấu hiệu lỗi nhiều, cũng có thể do đường truyền quốc tế làm ảnh hưởng.", "Number reply": 0}, {"Owner": "Huỳnh Lâm", "Cmt": "Nguyễn Quang Thành giống tui nè follow nhiều lắm mà nó cứ lặp lại mấy cái feed quài luôn mà qua ngày hôm sau thì có feed mới mà vẫn lặp lại cho hết ngày 🙂 trên đth thì bth ạ", "Number reply": 0}, {"Owner": "Huỳnh Lâm", "Cmt": "Phạm Văn Vương y chang luôn , nhiều khi có mấy post gần hơn 1 tháng nó moi lên :)", "Number reply": 0}]}, {"Owner": "Đặng Xuân Bách", "Cmt": "Cảm ơn bác nhiều!", "Number reply": 0}]}
+{
+    "URL post": "https://touch.facebook.com/1790408801291232",
+    "Has media": true,
+    "Media": [
+        "https://m.facebook.com/photo.php?fbid=1001736620727293&id=100026728928778&set=gm.1790408801291232&source=57&refid=18&__tn__=EH-R"
+    ],
+    "Content": "Nguyễn Hoàng Anh KhoaJ2TEAM Community\n10 tháng 3 lúc 09:05 ·\nChia sẻ mã nguồn công cụ triển khai dự án dotNET MVC\nMục tiêu:\n1. Giúp các dotNET developer rút ngắn thời gian duyệt qua từng thư mục và xoá những file không cần cho triển khai. Tự động hoá quá trình sao chép các tập tin cần thiết để triển khai theo tuỳ chọn.\n2. Giúp các bạn đang học lập trình shell script Windows (cmd batch) có thêm một use case tham khảo.\nTóm tắt chức năng chính: Sao chép các tập tin triển khai của một dự án dotNET MVC để thuận tiện mang đi triển khai.\nDo là công cụ nhà trồng cũng như trình độ viết script sơ đẳng nên anh em có ý kiến hoặc góp ý gì hay để phát triển thêm sản phẩm thì có thể comment bên dưới hoặc trên các kênh (github, fb cá nhân,...).\nChúc anh em thành công và phát triển!\nChi tiết xem tại: https://j2team.dev/go/c1e0f934\nHashtag: #j2team_share #j2team_dev #j2team_code #j2team_tool\n(Thanks admin hoặc mod duyệt bài)",
+    "Comment": [
+        {
+            "Owner": "Nguyễn Quang Thành",
+            "Cmt": "có facebook của ai không hiển thị mấy bài viết trong group trên bảng tin ko nhỉ? chỉ mình với!",
+            "Number reply": 6,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyễn Công Vĩnh",
+                    "Cmt": "Nguyễn Quang Thành bấm bỏ theo dõi group là nó k có nữa nhé ô",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Quang Thành",
+                    "Cmt": "Nguyễn Công Vĩnh ý là vẫn theo dõi tất cả các group nhưng ko hiện bài nào trên bảng tin ý, tao toàn phải vào group để đọc",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phạm Văn Vương",
+                    "Cmt": "Nguyễn Quang Thành Tôi thì hay bị kiểu. Bài viết mấy ngày trước rồi fb nó mới hiển thị trên bảnng tin hoặc thông báo. Thường là 3 ngày",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Hoàng Anh Khoa",
+                    "Cmt": "Nguyễn Quang Thành Facebook gần đây có dấu hiệu lỗi nhiều, cũng có thể do đường truyền quốc tế làm ảnh hưởng.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Huỳnh Lâm",
+                    "Cmt": "Nguyễn Quang Thành giống tui nè follow nhiều lắm mà nó cứ lặp lại mấy cái feed quài luôn mà qua ngày hôm sau thì có feed mới mà vẫn lặp lại cho hết ngày 🙂 trên đth thì bth ạ",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Huỳnh Lâm",
+                    "Cmt": "Phạm Văn Vương y chang luôn , nhiều khi có mấy post gần hơn 1 tháng nó moi lên :)",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đặng Xuân Bách",
+            "Cmt": "Cảm ơn bác nhiều!",
+            "Number reply": 0
+        }
+    ]
+}

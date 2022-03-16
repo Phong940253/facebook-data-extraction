@@ -1,1 +1,953 @@
-{"URL post": "https://touch.facebook.com/1775792036086242", "Has media": true, "Media": ["https://m.facebook.com/photo.php?fbid=444252027382234&id=100053923216268&set=gm.1775792036086242&source=57&refid=18&__tn__=EH-R"], "Content": "Phuc NguyenJ2TEAM Community\n19 tháng 2 lúc 09:42 ·\n///Bài viết của Huy Minh Bùi , reup vui lòng xin phép tác giả và ghi cre đầy đủ///\nPure Tuber và những sự lươn lẹo\nDạo gần đây Pure Tuber đang là một cái tên khá nổi. Thi thoảng vào Facebook hay Youtube lướt tí thì thấy quảng cáo của app này và theo như những gì ứng dụng quảng cáo thì Pure Tuber là một trình phát Youtube không có quảng cáo (quảng cáo phần mềm chặn quảng cáo nghe hài nhỉ...), có khả năng phát nhạc trong nền, cho phép tải video, etc. Nghe có vẻ hấp dẫn nhưng ứng dụng này khá là mập mờ và đáng nghi. Theo như một số thread trên VOZ thì ứng dụng từng tên là \"Vanced Tuber\", có vẻ như là một bait khá khôn ngoan để câu người dùng đang tìm kiếm Youtube Vanced trên Play Store. Nhưng về sau đã bị Google phát hiện và trảm, về sau đăng lên lại với cái tên Pure Tuber và thay vì tạo ra quả bait câu người dùng Youtube Vanced như trước thì nay họ sử dụng cách cổ điển hơn là... quảng cáo mọi nơi và chiêu mời người khác để ăn dịch vụ VIP ¯\\_(ツ)_/¯\nĐọc đến đấy mọi người sẽ nghĩ \"Cơ mà khoan đây là một group về FOSS mà, mang cái này nói để làm gì ???\". Well.... đây mới là vấn đề chính mình muốn nói ở đây. Đối với một số bạn chuyên tìm những app FOSS để xem Youtube, nếu nhìn vào trình phát của Pure Tuber sẽ thấy nó khá quen thuộc. Pure Tuber thực chất dựa trên Newpipe - một trình xem Youtube mã nguồn mở, từng được giới thiệu ở đây. So sánh qua trình phát video và Cài Đặt của hai ứng dụng có thể thấy rõ Pure Tuber là một bản fork của Newpipe với một số chức năng thêm vào như là đăng nhập Youtube hay bình luận, thậm chí Pure Tuber còn có hệ thống VIP nữa. Vậy... nếu dựa trên Newpipe thì chắc Pure Tuber sẽ phải ghi credit Newpipe vào đúng không ? KHÔNG HỀ. Tính đến thời điểm hiện tại (09/11/2021) trên ứng dụng Pure Tuber hay thậm chí là website chưa hề ghi bất cứ credit nào là ứng dụng đang dựa trên Newpipe (và thậm chí còn không credit các thư viện Newpipe sử dụng). Newpipe sử dụng giấy phép GPLv3 và việc Pure Tuber không ghi credit là đang vi phạm giấy phép một cách trắng trợn, không khác gì như đang ăn cắp công sức của người khác cả.\nVậy nên nếu các bạn ủng hộ, hãy ủng hộ đúng ứng dụng. Đối với một số người Pure Tuber có thể tốt hơn chút do sử dụng được dịch vụ Google, nhưng hãy suy nghĩ lại xem, với những chiêu trò lươn lẹo trong những ngày đầu của ứng dụng, cộng thêm việc vi phạm giấy phép GPL, hãy cân nhắc trước khi tải và dùng. Đối với mình thì thà tải Youtube Vanced còn hơn là dùng cái này, dữ liệu thì không chỉ Google thu mà giờ Pure Tuber cũng thu nữa thì ngu gì mà tải :))) (à mình decompile cái apk ra ngó thử thì thấy nó còn có API gì liên quan đến Facebook nữa đấy, nhờ bạn nào phân tích hộ khoản này).\nLink liên quan:\nData Security Statements của Pure Tuber : https://archive.ph/loQ5Z\nChính sách quyền riêng tư (Privacy Policy) : https://archive.ph/11uKN\nĐiều khoản và dịch vụ (ToS) : https://archive.ph/eP9Xt\nTất cả các giấy tờ trên không đề cập đến việc dựa trên Newpipe\nArchive của trang ngày 09/11 : https://archive.ph/Xfozj\nNgoài ra còn có trang trước kia họ làm Vanced Tuber : https://www.vanced.pro/\n(Snapshot ngày 20/10/2020, đặt hẳn tên là Youtube Vanced và là Newpipe bê nguyên si : https://archive.ph/IAFRk)\nLink issue Github liên quan : https://github.com/TeamNewPipe/NewPipe/issues/6395\nThread VOZ có liên quan : https://voz.vn/t/xin-app-xem-youtube-khi-tat-man-hinh-android.210892/page-8\nhttps://voz.vn/t/vanced-kit-tren-ch-play-la-hang-that-ko.237306/\n#j2team_discussion\n#j2team_report\nPs: Vụ này t biết trước ông Huy nhưng hành văn khá chán nên ông Huy viết :v với lại anh Lê Thịnh mới rì viu lại Ống Mới nên toi cũng reup bài này @@\nThích\nHiển thị thêm cảm xúc\nChia sẻ\nBình luận đã bị tắt cho bài viết này.\n27 lượt chia sẻ\nTrần Tuấn Minh\nXem mấy post trên fb toàn quảng cáo cái này thấy xl thật sự\n3 tuần trướcThíchBáo cáo\nVăn Hưng\nNgay từ cái hồi mới ra trông ỉa chảy thật sự\n3 tuần trướcThíchBáo cáo\nDo Hoang Trung\ntốn data\n3 tuần trướcThíchBáo cáo\nNguyễn Mạnh Hùng\nMình đọc cứ thấy buồn cười mà không hiểu tại sao\n3 tuần trướcThíchBáo cáo\nTrần Tuấn Minh\nCái drumify có tương tự không mọi người 🥲\n3 tuần trướcThíchBáo cáo\nManh Cuong Vu\nIphone không có cái vanced thì làm sao?\n3 tuần trướcThíchBáo cáo\nBảo Nguyên đã trả lời · 4 phản hồi\nXuân Hải Trần\nmà sao cái app này vẫn chưa bị trảm tiếp nhỉ, youtube vanced còn k đưa được lên ch play :/\n3 tuần trướcThíchBáo cáo\nBảo Nguyên đã trả lời · 1 người trả lời\nLưu Quang Vũ\nMuốn dùng Newpipe nhưng không xem được các playlist của kênh muốn xem 🥲\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 3 phản hồi\nTrung Hiếu\nThế giờ có nên dùng không ?\n3 tuần trướcThíchBáo cáo\nNông Toàn đã trả lời · 1 người trả lời\nMaxwell Bennedict\nnhưng phải nói thật :v\ntôi thấy nó xài tốt hơn Youtube Vanced :))))\nHồi trước tôi xài Vanced, muốn đăng nhập vào thì phải link với app youtube gốc. Không thể xem đc bình luận và mấy cái Live stream.\nNói chung là thà chịu khó coi quảng cáo còn hơn trải nghiệm nó bất tiện như vậy.\n3 tuần trướcThíchBáo cáo\nNguyễn Đình Hiếu đã trả lời · 3 phản hồi\nĐăng Ninh\nôi tầm này thì dùng Vanced còn sướng gấp ngàn lần lại đi dùng một cái app đc quảng cáo? =)) đây chắc hẳn là mấy ông lên Play Store tìm Vanced khi được bảo là \"dùng Vanced đi\" =))\n3 tuần trướcThíchBáo cáo\nĐăng Ninh đã trả lời · 2 phản hồi\nChấn Huy\nCái nào xài ok thì dùng, cái khác k quan tâm lắm\n3 tuần trướcThíchBáo cáo\nNguyễn Cao Thọ\nDùng vanced để xem và newp để tải video\n3 tuần trướcThíchBáo cáo\nTien Tran\nMusi\n3 tuần trướcThíchBáo cáo\nHào Nguyễn\nbảo là chặn quảng cáo nhưng chính nó lại đi spam quảng cáo =))) đ hiểu sao bảo phát nhạc dưới nền mà cứ hết 10 vid nó lại hiện quảng cáo và kêu mua\n3 tuần trướcThíchBáo cáo\nNguyễn Công Sơn\nđọc vẫn chưa hiểu ý chủ tus lắm nhưng đại khái là mình đang xài app này và thấy nó khá tiện, vì có thể nghe trên youtube mà có thể tắt màn hình, và đặc biệt là ko ads, tiện thì dùng thôi chơ phân tích gì lắm :))\n3 tuần trướcThíchBáo cáo\nDuy Dong đã trả lời · 10 phản hồi\nNguyễn Nhật Long\nĐã có thời gian tui từng thử Pure Tuber trên con Amazon Fire HD 8 mà khỏi cần phải dài dòng, Pure Tuber dùng như crap.\nThành ra cho tới bây giờ, tui vẫn dùng song song Vanced với NewPipe Legacy, vì tui vẫn thấy cả hai dùng vẫn thích hơn.\n3 tuần trướcThíchBáo cáo\nNguyễn Đức Duy\nvẫn chọn youtube vanced, nó ở đẳng cấp khác\n3 tuần trướcThíchBáo cáo\nPhạm Văn Phúc\nTrước tạch Google service toàn dùng tạm newpipe\nCăn bản thì cũng nên phản đối, nhưng bản chất của FOSS là kiểu làm theo năng lực hưởng theo nhu cầu nên chắc k sao\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 1 người trả lời\nʚɞQuốc Tấnʚɞ\nĐiện thoại mình Android 11 không cài đc Youtube Vanced 😭\n3 tuần trướcThíchBáo cáo\nNguyễn Đức Kiên đã trả lời · 5 phản hồi\nBùi Hùng\nT vẫn đang dùng vanced, best choise ever\n3 tuần trướcThíchBáo cáo\nAndrey Shevchenko\nMình cũng đang dùng pure và chỉ thấy quảng cáo mời bạn để lên vip lúc mở app, sau đó k thấy và cũng k thấy quảng cáo nào về nó trên facebook luôn\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 1 người trả lời\nThắng Phạm\nTui xài vanced và thấy ổn, k có ý định trải nghiệm cái này @@\n3 tuần trướcThíchBáo cáo\nGia Linh\nVanced mãi đỉnh:))\n3 tuần trướcThíchBáo cáo\nViệt Phạm\nĐã dùng 1 lần và xóa. 2s lại load video 1 cái bực mình\n3 tuần trướcThíchBáo cáo\nTrường Lâm\nbác nào dùng ios cho em hỏi là dùng app nào thay YT được không ạ, đang ở bên android dùng vanced sướng vãi đạn mà giờ qua hệ sinh thái này YT qc ầm ầm khó chịu quá :v\n3 tuần trướcThíchBáo cáo\nXuân Toàn đã trả lời · 14 phản hồi\nPhuc Nguyen\nhttps://www.facebook.com/groups/fossvietnam/permalink/931173787794979/?app=fbl đây là bài viết gốc, ông nào có hứng với FOSS thì nên ghé qua group đó\nHuy Minh BùiCộng đồng FOSS Việt Nam8 tháng 11, 2021 lúc 23:15 ·\nPure Tuber và những sự lươn lẹo\nDạo gần đây Pure Tuber đang là một cái tên khá nổi. Thi thoảng vào Facebook hay… Xem thêm\n3 tuần trướcThíchBáo cáo\nKết Nguyễn\nCái này chặn quảng cáo nhưng vẫn có quảng cáo, vanced mãi đỉnh\n3 tuần trướcThíchBáo cáo\nNguyễn Xuân Cảnh\niOS thì sao các bạn\n3 tuần trướcThíchBáo cáo\nĐinh Hải\nthì ra là cái app của lão này =)) combat với ae voz cả chục page\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 1 người trả lời\nĐạt\nVanced thì sao?\nMãi đỉnh, mãi đỉnh\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen\nThành Long Đệ Tam pủe 😵\n3 tuần trướcThíchBáo cáo\nPhúc\nGiờ thêm chức năng tải xuống mọi định dạng nữa là bá chủ được rồi\nNhưng đời đời vẫn không thể lên được CH Play <(\")\n3 tuần trướcThíchBáo cáo\nNguyễn Đức Toàn\nVanced giờ còn hiện cả dislike ạ, thích vl =))\n3 tuần trướcThíchBáo cáo\nHà Lê đã trả lời · 3 phản hồi\nAnh Quan\nVanced ngon nhất rồi 😆\n3 tuần trướcThíchBáo cáo\nHíu Hữu\n+1 vanced\n3 tuần trướcThíchBáo cáo\nTakahashi Moriyasu\nThằng cc này t chưa bao giờ xài luôn, Vanced ổn nhất rồi 🤣\n3 tuần trướcThíchBáo cáo\nPhạm Tuấn Anh\nA em cho hỏi sao google lại cấp phép cho các app trong bài viết hoạt động nhỉ, nó ảnh hưởng trực tiếp đến google mà ?\n3 tuần trướcThíchBáo cáo\nLê Quang đã trả lời · 4 phản hồi\nNguyễn Nhật Minh\nThế trên iOS nên dùng app nào nhỉ bạn?\n3 tuần trướcThíchBáo cáo\nNguyễn Đình Nam\nTải về dùng chưa đến 3p xóa luôn. Còn khướt mới bằng vanced.\n3 tuần trướcThíchBáo cáo\nĐồng Nhựt Huy\nVẫn có nhiều ứng dụng cho bình luận, thích luôn đó.\n3 tuần trướcThíchBáo cáo\nThắng Trương\ndùng RN8P không tải được yt vanced đành dời qua con này :))) đọc bài này xong xoá hẳn cmnl :>\n3 tuần trướcThíchBáo cáo\nHoàng Huy đã trả lời · 1 người trả lời\nPhuc Nguyen\nQuang Lê newpipe on top, pủ dbgr ye ye\n3 tuần trướcThíchBáo cáo\nQuang Lê đã trả lời · 1 người trả lời\nIsora Hoàng\nNewpipe chính là app gốc nhá\nKo qc vvv mình sài hoài tận 2020\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 5 phản hồi\nNguyễn Bảo Lâm\nMik sài máy Vivo và hiện tại thì trên kho ứng dụng V-appstore thì Vanced tuber vẫn còn\n3 tuần trướcThíchBáo cáo\nSid Nguyen\nbên ios thì có mỗi nó dùng ngon\n3 tuần trướcThíchBáo cáo\nThao Phạm\nTiện thì ai biết xóa hẳn cái này ko ạ? Trc cũng có 1 post dạng như này xong bảo down cái app này về. Giờ nó chạy ngầm ko xóa đc luôn\n3 tuần trướcThíchBáo cáo\nGia Hân đã trả lời · 5 phản hồi\nTrần Long Giang\nMình vừa tải về trên iOS nhưng thấy app ghẻ quá nên xoá luôn, YouTube Vanced trên Android vẫn là ngon nhất\n3 tuần trướcThíchBáo cáo\nNam Hoàng\nDùng còn dở hơn cả yt, xài được 2 hôm xóa\n3 tuần trướcThíchBáo cáo\nNguyễn Sang\nVance vẫn là ngon nhất\n3 tuần trướcThíchBáo cáo\nChấm Bảo\nCái ứng dụng rác vl mà lắm thg công nghệ mời xài :)\n3 tuần trướcThíchBáo cáo\nDương Quang Duy\nsao mình dùng cái này nó cứ bị lag ý 😢\n3 tuần trướcThíchBáo cáo\nDang Hoang\nvẫnnghe quảng cáo hằng ngày\n3 tuần trướcThíchBáo cáo\nNguyễn Hùng\nDinh Thanh Huyen H mới biết là có cả puretuber luôn. Toàn dùng youtube vanced trên đt vs adblock trên máy tính :>\n3 tuần trướcThíchBáo cáo\nNguyễn Trường An\nThế là quảng cáo vanced hay quảng cáo pure\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 4 phản hồi\nTrần Hồng Quân\nIos thì có mỗi nó dùng đc . Vance mà có ios thì sướng\n3 tuần trướcThíchBáo cáo\nTrần Hồng Quân đã trả lời · 3 phản hồi\nThành Thái Nguyễn\nVanced giờ có cả skip self promo ( quảng cáo của creator trong clip)\n3 tuần trướcThíchBáo cáo\nTrần Hải\nYouTube vanced nó cập nhật cái xem chat khi xem video toàn màn hình. Mới đầu em thấy nó khá tiện nhưng đến khi e xem stream thì thấy cũng k tiện lắm, có cách nào để lại như cũ k ạ.\n3 tuần trướcThíchBáo cáo\nTin Nguyen đã trả lời · 2 phản hồi\nNhat Anh\nSao cái pure tube mình tắt màng hình mà nó ko phát nhạc thế\n3 tuần trướcThíchBáo cáo\nLục Kim An\nTrước giờ dùng mỗi vanced, newpipe chỉ để tải video với trích mp3 ra :D\n3 tuần trướcThíchBáo cáo\nNam Khánh\n1 thời dùng new pipe, bây h mình dùng utube vanced cho tiện =))\n3 tuần trướcThíchBáo cáo\nDinh Duy Nguyen\nCứ Premium là chân ái 🥰\n3 tuần trướcThíchBáo cáo\nKim Soái đã trả lời · 1 người trả lời\nHoàng Huy\ncheaper copy\n3 tuần trướcThíchBáo cáo\nDương Đức Toàn\nDùng newpipe lâu sẽ nhận ra ngay pure chỉ là chiêu trò đờ bờ rờ rờ\n3 tuần trướcThíchBáo cáo\nTrương Quan Thái\nVanced mãi đỉnh\n3 tuần trướcThíchBáo cáo\nNguyễn Minh Trí\nios thì con này khá ổn :v\n3 tuần trướcThíchBáo cáo\nLiam Seven\nPhan Gia Lộc\n3 tuần trướcThíchBáo cáo\nPhan Gia Lộc đã trả lời · 1 người trả lời\nVăn Đoàn\nBác nào tóm tắt giúp e với 😥\n3 tuần trướcThíchBáo cáo\nHữu Nhânn Nguyễn\nVanced yt ngon nhất mà kh biết sao kh cài đc\n3 tuần trướcThíchBáo cáo\nMinh Phuc đã trả lời · 1 người trả lời\nThanh Huyền\nThường thì cái gì càng đc pr nhiều thì càng chán.\n3 tuần trướcThíchBáo cáo\nHữu Phước\nIOS nên chỉ dùng Preminum. Android thì tải Vanced\n3 tuần trướcThíchBáo cáo\nAn Lee\nvanced is best:v\n3 tuần trướcThíchBáo cáo\nMarcel Trương\ntải về nhưng chưa bật bao giờ. vừa xóa xong\n3 tuần trướcThíchBáo cáo\nTruong Nguyen\nApp như đb mà đi đâu cũng gặp quảng cáo, thua xa Drumtify hay Musi.\n3 tuần trướcThíchBáo cáo\nGiang Giang\nBạn nào xài redmi thì cứ vô ứng dụng nhạc trên máy . Nghe nhạc trên Youtube được luôn nhé không cần tải thêm app đâu\n3 tuần trướcThíchBáo cáo\nNguyễn Đình Dương đã trả lời · 6 phản hồi\nMai Anh Tuấn\nT thấy vanced tốt hơn newpipe chứ, hay giờ newpipe ngon rồi chưa trước chỉ dùng để down nhạc với vids\n3 tuần trướcThíchBáo cáo\nTrần Duy Khánh\nVancedapp.com luôn là chân ái 😁\nYouTube™ Vanced\nvancedapp.com\n3 tuần trướcThíchBáo cáo\nViet Anh Vu\n:)) cũng sắp bay thui\n3 tuần trướcThíchBáo cáo\nPhúc Thiên\nVanced là youtube nhưng tốt hơn\n3 tuần trướcThíchBáo cáo\nTrần Quốc Vương\nVanced vẫn best nhất, mượt mà.\n3 tuần trướcThíchBáo cáo\nBùi Hoàng\nHuy Minh Bùi pro\n3 tuần trướcThíchBáo cáo\nHuỳnh Anh Vinh\nVẫn dùng YTB Pre là ổn nhất 😅\n3 tuần trướcThíchBáo cáo\nNhư Quỳnh\n:)))))))\n3 tuần trướcThíchBáo cáo\nSơn Hoàng\nbên android người ta xài vanced hết chứ ai xài ba cái đồ yêu này đâu, bên ios mới hot hơn, mới lên appstore tìm cái newpiper của bác có đâu mà ủng hộ chả tải mấy cái kia @@\n3 tuần trướcThíchBáo cáo\nVũ Đăng Hải\nVấn đề là iphone, ngoài cái này ra thì chắc chỉ có chơi vs youtube premnium 🤣\n3 tuần trướcThíchBáo cáo\nNguyễn Khoa đã trả lời · 1 người trả lời\nTrần Phúc Hoàng Gia\ncái thằng pure tuber này ngu đ tả được 😃 để tự động phát để nghe nhạc, nó phát mãi 2 bài lặp đi lặp lại. recommendation thì ngu hơn youtube 1000 lần. dùng được 2 ngày dẹp luôn.\n3 tuần trướcThíchBáo cáo\nJohn Wick đã trả lời · 1 người trả lời\nRicardo Leo Sen\nTrước giờ toàn dùng vanced nghe nhạc, còn kiếm ra video hay thì mình vào app gốc subcribe với like rồi quay lại vanced dùng tiếp =)))\n3 tuần trướcThíchBáo cáo\nTrịnh Gia Bảo\nWait a minute!\n3 tuần trướcThíchBáo cáo\nPhuc Nguyen đã trả lời · 1 người trả lời\nPhuc Nguyen\nđào lại bài vì vanced sắp khai tử , người người nhà nhà nhảy qua thằng ăn cắp\nvào Chủ NhậtThíchBáo cáo\nPhuc Nguyen đã trả lời · 2 phản hồi", "Comment": [{"Owner": "Trần Tuấn Minh", "Cmt": "Xem mấy post trên fb toàn quảng cáo cái này thấy xl thật sự", "Number reply": 0}, {"Owner": "Văn Hưng", "Cmt": "Ngay từ cái hồi mới ra trông ỉa chảy thật sự", "Number reply": 0}, {"Owner": "Do Hoang Trung", "Cmt": "tốn data", "Number reply": 0}, {"Owner": "Nguyễn Mạnh Hùng", "Cmt": "Mình đọc cứ thấy buồn cười mà không hiểu tại sao", "Number reply": 0}, {"Owner": "Trần Tuấn Minh", "Cmt": "Cái drumify có tương tự không mọi người 🥲", "Number reply": 0}, {"Owner": "Manh Cuong Vu", "Cmt": "Iphone không có cái vanced thì làm sao?", "Number reply": 4, "Reply cmt": [{"Owner": "Bảo Nguyên", "Cmt": "Manh Cuong Vu xài uyou á cũng của vanced", "Number reply": 0}, {"Owner": "Trương Tùng Dương", "Cmt": "Bảo Nguyên cần jarbeak k b", "Number reply": 0}, {"Owner": "Lộc", "Cmt": "Manh Cuong Vu mua android", "Number reply": 0}, {"Owner": "Bảo Nguyên", "Cmt": "Trương Tùng Dương k bn cài trên pc nha", "Number reply": 0}]}, {"Owner": "Xuân Hải Trần", "Cmt": "mà sao cái app này vẫn chưa bị trảm tiếp nhỉ, youtube vanced còn k đưa được lên ch play :/", "Number reply": 1, "Reply cmt": [{"Owner": "Bảo Nguyên", "Cmt": "Xuân Hải Trần Youtube vanced là mod từ app gốc nên k đc đưa lên store nha mà nó có trên store từ những ngày đầu mà youtube nó đá vì sợ bị đạp đổ chén cơm thôi", "Number reply": 0}]}, {"Owner": "Lưu Quang Vũ", "Cmt": "Muốn dùng Newpipe nhưng không xem được các playlist của kênh muốn xem 🥲", "Number reply": 3, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Lưu Quang Vũ xài skytube đi có lấy mã nguồn ống mới nma ghe cre đàng hoàng với lại cũng có viết lại ui, k có chạy nền nma có chặn kênh đvowis thứ bác đang tìm đó", "Number reply": 0}, {"Owner": "Lưu Quang Vũ", "Cmt": "Phuc Daniel Cái đó có gid hơn youtube vanced không bác :3", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Lưu Quang Vũ ... skytube thì k thấy chỗ pip với background nhưng bù lại có chỗ block kênh k muốn xem bro", "Number reply": 0}]}, {"Owner": "Trung Hiếu", "Cmt": "Thế giờ có nên dùng không ?", "Number reply": 1, "Reply cmt": [{"Owner": "Nông Toàn", "Cmt": "Trung Hiếu tất nhiên là k vì nó như l", "Number reply": 0}]}, {"Owner": "Maxwell Bennedict", "Cmt": "nhưng phải nói thật :v\ntôi thấy nó xài tốt hơn Youtube Vanced :))))\nHồi trước tôi xài Vanced, muốn đăng nhập vào thì phải link với app youtube gốc. Không thể xem đc bình luận và mấy cái Live stream.\nNói chung là thà chịu khó coi quảng cáo còn hơn trải nghiệm nó bất tiện như vậy.", "Number reply": 3, "Reply cmt": [{"Owner": "Hoàng Chí Bằng", "Cmt": "Maxwell Bennedict vanced thì dùng cái microG là đăng nhập đc mà :v", "Number reply": 0}, {"Owner": "Vũ Bình Dương", "Cmt": "Maxwell Bennedict Vanced xài microG là đăng nhập bth mà, đọc bình luận với xem live stream bth. Có mỗi ông là nó vậy thôi =))))", "Number reply": 0}, {"Owner": "Nguyễn Đình Hiếu", "Cmt": "Maxwell Bennedict Có mỗi ô bị như vậy á :))).", "Number reply": 0}]}, {"Owner": "Đăng Ninh", "Cmt": "ôi tầm này thì dùng Vanced còn sướng gấp ngàn lần lại đi dùng một cái app đc quảng cáo? =)) đây chắc hẳn là mấy ông lên Play Store tìm Vanced khi được bảo là \"dùng Vanced đi\" =))", "Number reply": 2, "Reply cmt": [{"Owner": "Chấn Huy", "Cmt": "Đăng Ninh appstore làm gì có vanced", "Number reply": 0}, {"Owner": "Đăng Ninh", "Cmt": "Chấn Huy đó chính xác là điều tôi muốn nói đó =)) mấy ổng nghĩ Google khôn lắm hay sao mà để một thằng Youtube k có quảng cáo lên cùng sân đc với cả Youtube =))", "Number reply": 0}]}, {"Owner": "Chấn Huy", "Cmt": "Cái nào xài ok thì dùng, cái khác k quan tâm lắm", "Number reply": 0}, {"Owner": "Nguyễn Cao Thọ", "Cmt": "Dùng vanced để xem và newp để tải video", "Number reply": 0}, {"Owner": "Tien Tran", "Cmt": "Musi", "Number reply": 0}, {"Owner": "Hào Nguyễn", "Cmt": "bảo là chặn quảng cáo nhưng chính nó lại đi spam quảng cáo =))) đ hiểu sao bảo phát nhạc dưới nền mà cứ hết 10 vid nó lại hiện quảng cáo và kêu mua", "Number reply": 0}, {"Owner": "Nguyễn Công Sơn", "Cmt": "đọc vẫn chưa hiểu ý chủ tus lắm nhưng đại khái là mình đang xài app này và thấy nó khá tiện, vì có thể nghe trên youtube mà có thể tắt màn hình, và đặc biệt là ko ads, tiện thì dùng thôi chơ phân tích gì lắm :))", "Number reply": 10, "Reply cmt": [{"Owner": "Quân Trần", "Cmt": "Nguyễn Công Sơn dùng vanced đi :V", "Number reply": 0}, {"Owner": "Nguyễn Công Sơn", "Cmt": "Quân Trần app nào chả đc, tiện thì dùng thôi, ăn nhau cái marketing nữa, thằng nào marketing tốt thì thằng đó thắng", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Nguyễn Công Sơn nói tóm lại là app pủe ăn cắp mã nguồn r lại trục lợi, nếu bác để ý thì thỉnh thoảng pủe sẽ hiện qc, và đó tất nhiên là trục lợi rồi", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Nguyễn Công Sơn với lại bác nhìn cmt trên đi", "Number reply": 0}, {"Owner": "Lê Văn Dũng", "Cmt": "Phuc Daniel em dùng lâu rồi mà k hề có quảng cáo luôn đấy bác.", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Lê Văn Dũng tôi thì dùng mới 5p nó hiện qc\nVới lại nghe nền nhiều hình như bị limit phải mua vip thì phải", "Number reply": 0}, {"Owner": "Lê Văn Dũng", "Cmt": "Phuc Daniel 1 ngày tôi nghe tầm 20-25 video mà. K hề có quảng cáo. Thỉnh thoảng nó lỗi, giới hạn video phát nền, thoát ra vào lại ok ngay", "Number reply": 0}, {"Owner": "Khoa Thường", "Cmt": "Nguyễn Công Sơn t tải về vào video đầu thì k qc đến lần 2 vào bắt mình làm gì đấy mới cho load video tắt dc qc thế xóa luôn", "Number reply": 0}, {"Owner": "Xuân Toàn", "Cmt": "Phuc Daniel ios chả bao giơg gặp qc gì ở app này cả. Nói chung là ngon 😂", "Number reply": 0}, {"Owner": "Duy Dong", "Cmt": "Lê Văn Dũng mình dùng cũng ko thấy qc hehe", "Number reply": 0}]}, {"Owner": "Nguyễn Nhật Long", "Cmt": "Đã có thời gian tui từng thử Pure Tuber trên con Amazon Fire HD 8 mà khỏi cần phải dài dòng, Pure Tuber dùng như crap.\nThành ra cho tới bây giờ, tui vẫn dùng song song Vanced với NewPipe Legacy, vì tui vẫn thấy cả hai dùng vẫn thích hơn.", "Number reply": 0}, {"Owner": "Nguyễn Đức Duy", "Cmt": "vẫn chọn youtube vanced, nó ở đẳng cấp khác", "Number reply": 0}, {"Owner": "Phạm Văn Phúc", "Cmt": "Trước tạch Google service toàn dùng tạm newpipe\nCăn bản thì cũng nên phản đối, nhưng bản chất của FOSS là kiểu làm theo năng lực hưởng theo nhu cầu nên chắc k sao", "Number reply": 1, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Phạm Văn Phúc tất nhiên, k phải phần mềm foss nào cũng có ông lớn tài trợ như blender dc nên toàn xin donate để duy trì thôi", "Number reply": 0}]}, {"Owner": "ʚɞQuốc Tấnʚɞ", "Cmt": "Điện thoại mình Android 11 không cài đc Youtube Vanced 😭", "Number reply": 5, "Reply cmt": [{"Owner": "Trần Trung", "Cmt": "ʚɞQuốc Tấnʚɞ tắt tối ưu đi là đc", "Number reply": 0}, {"Owner": "Trung", "Cmt": "ʚɞQuốc Tấnʚɞ t android 11 đây", "Number reply": 0}, {"Owner": "Nguyễn Đức Kiên", "Cmt": "ʚɞQuốc Tấnʚɞ đây bác, dùng ngon =))", "Number reply": 0}, {"Owner": "ʚɞQuốc Tấnʚɞ", "Cmt": "Nguyễn Đức Kiên Ủa sao cài được hay z. Chưa biết cách fix😹", "Number reply": 0}, {"Owner": "Nguyễn Đức Kiên", "Cmt": "ʚɞQuốc Tấnʚɞ thì cứ cài cái Vanced manager về trước để down mấy cái kia là xong thôi mà 🧐", "Number reply": 0}]}, {"Owner": "Bùi Hùng", "Cmt": "T vẫn đang dùng vanced, best choise ever", "Number reply": 0}, {"Owner": "Andrey Shevchenko", "Cmt": "Mình cũng đang dùng pure và chỉ thấy quảng cáo mời bạn để lên vip lúc mở app, sau đó k thấy và cũng k thấy quảng cáo nào về nó trên facebook luôn", "Number reply": 1, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Andrey Shevchenko trên các page anh da đen da vàng gì đấy lục tầm t11 t10 là thấy, giờ ít pr rầm rộ lại r", "Number reply": 0}]}, {"Owner": "Thắng Phạm", "Cmt": "Tui xài vanced và thấy ổn, k có ý định trải nghiệm cái này @@", "Number reply": 0}, {"Owner": "Gia Linh", "Cmt": "Vanced mãi đỉnh:))", "Number reply": 0}, {"Owner": "Việt Phạm", "Cmt": "Đã dùng 1 lần và xóa. 2s lại load video 1 cái bực mình", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "bác nào dùng ios cho em hỏi là dùng app nào thay YT được không ạ, đang ở bên android dùng vanced sướng vãi đạn mà giờ qua hệ sinh thái này YT qc ầm ầm khó chịu quá :v", "Number reply": 14, "Reply cmt": [{"Owner": "Thọ", "Cmt": "Trường Lâm Có pc thì bạn thử tìm cách cài uyou+ đi nó cũng do team vanced làm\nBất tiện mỗi cái hết chứng chỉ lại phải cắm cài lại", "Number reply": 0}, {"Owner": "Nguyễn Đình Chương", "Cmt": "Trường Lâm Làm cái acc youtube premium. Tháng 10k", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "Nguyễn Đình Chương ồi em nghèo em ms xin cách dùng cái nào như vanced chứ tiền nhiều em đã cười khẩy vào cmt \"Yt premium đọc rồi đi ra\" :)))))))))))))))))))))", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "Thọ thanks bro, nghe hơi lằng nhằng nhể, làm tôi muốn quay về vs android :)))))))))), trước dùng app crack còn nhiều hơn app tải từ ch play về", "Number reply": 0}, {"Owner": "Thọ", "Cmt": "Trường Lâm hơi lằng nhằng thật nhưng các tính năng y như premium vậy", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "Thọ cảm ơn bro nhé", "Number reply": 0}, {"Owner": "Bình Trần", "Cmt": "Trường Lâm Mình đang dùng app Ture Browser Pro khác ổn, có thể mua phiên bản đầy đủ trong ứng dụng:\n\nhttps://apps.apple.com/vn/app/tube-browser-pro/id1552700862?l=vi", "Number reply": 0}, {"Owner": "Khải Sky", "Cmt": "Trường Lâm dùng bản quyền thôi bạn", "Number reply": 0}, {"Owner": "Trần M. Dũng", "Cmt": "Trường Lâm Musi á bạn\nCái này cho phép phát nhạc trên nền khi tắt điện thoại cũng phát. Thi thoảng quảng cáo 5s đầu video thôi còn khi đã phát thì nó chặn hết qc á", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "khổ nỗi tôi nghèo thôi chứ có tiền là tôi cũng khoe như bro :))))))))", "Number reply": 0}, {"Owner": "Trường Lâm", "Cmt": "Trần M. Dũng nghe hay nhề, để tôi test thử nhé", "Number reply": 0}, {"Owner": "Trần M. Dũng", "Cmt": "Trường Lâm đúng á bạn tôi nge 2 tiếng khong có cái quảng cáo nào 😅😅 phát trên nền đc bạn cứ trải nghiệm 😅", "Number reply": 0}, {"Owner": "Vũ Tiến", "Cmt": "Trường Lâm iOS thì thấy ngoài PureTuber thì chưa có cái nào dễ cho user bt cả, mình là người dùng bt thấy cái dễ nhất thì dùng thôi.", "Number reply": 0}, {"Owner": "Xuân Toàn", "Cmt": "Thọ nếu không lầm thì uyou+ không phải của team vanced làm, mà là dev của cộng đồng jaibreak làm ra thôi, còn team vanced chỉ là khuyến khích, quảng cáo người dùng ios dùng thôi.", "Number reply": 0}]}, {"Owner": "Phuc Nguyen", "Cmt": "https://www.facebook.com/groups/fossvietnam/permalink/931173787794979/?app=fbl đây là bài viết gốc, ông nào có hứng với FOSS thì nên ghé qua group đó", "Number reply": 0}, {"Owner": "Kết Nguyễn", "Cmt": "Cái này chặn quảng cáo nhưng vẫn có quảng cáo, vanced mãi đỉnh", "Number reply": 0}, {"Owner": "Nguyễn Xuân Cảnh", "Cmt": "iOS thì sao các bạn", "Number reply": 0}, {"Owner": "Đinh Hải", "Cmt": "thì ra là cái app của lão này =)) combat với ae voz cả chục page", "Number reply": 1, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Đinh Hải từ cái lúc nó qc rầm rộ là t nghi nó là do thằng nào ở vn đi ăn cắp rồi)=))))", "Number reply": 0}]}, {"Owner": "Đạt", "Cmt": "Vanced thì sao?\nMãi đỉnh, mãi đỉnh", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Thành Long Đệ Tam pủe 😵", "Number reply": 0}, {"Owner": "Phúc", "Cmt": "Giờ thêm chức năng tải xuống mọi định dạng nữa là bá chủ được rồi\nNhưng đời đời vẫn không thể lên được CH Play <(\")", "Number reply": 0}, {"Owner": "Nguyễn Đức Toàn", "Cmt": "Vanced giờ còn hiện cả dislike ạ, thích vl =))", "Number reply": 3, "Reply cmt": [{"Owner": "Nguyễn Huy Hoàng", "Cmt": "Nguyễn Đức Toàn sao e tìm trên chplay ko thấy nhỉ?", "Number reply": 0}, {"Owner": "Mạnh Thời", "Cmt": "Nguyễn Huy Hoàng trên CH Play làm gì có đâu b =))\nLên trang chủ n mà down về https://vancedapp.com/", "Number reply": 0}, {"Owner": "Hà Lê", "Cmt": "Nguyễn Huy Hoàng Và xem cả bài viết của mình trong nhóm để biết cách bật, hehe.\n\n(Quảng cáo chút)", "Number reply": 0}]}, {"Owner": "Anh Quan", "Cmt": "Vanced ngon nhất rồi 😆", "Number reply": 0}, {"Owner": "Híu Hữu", "Cmt": "+1 vanced", "Number reply": 0}, {"Owner": "Takahashi Moriyasu", "Cmt": "Thằng cc này t chưa bao giờ xài luôn, Vanced ổn nhất rồi 🤣", "Number reply": 0}, {"Owner": "Phạm Tuấn Anh", "Cmt": "A em cho hỏi sao google lại cấp phép cho các app trong bài viết hoạt động nhỉ, nó ảnh hưởng trực tiếp đến google mà ?", "Number reply": 4, "Reply cmt": [{"Owner": "Đồng Nhựt Huy", "Cmt": "Phạm Tuấn Anh Quảng cáo ngầm.", "Number reply": 0}, {"Owner": "Andrey Shevchenko", "Cmt": "Phạm Tuấn Anh chắc kiểu chống độc quyền đó bác", "Number reply": 0}, {"Owner": "Vũ Bình Dương", "Cmt": "Phạm Tuấn Anh Theo như dev của youtube nói thì google ko có đủ cơ sở pháp lý để đánh sập mấy cái app này", "Number reply": 0}, {"Owner": "Lê Quang", "Cmt": "Vũ Bình Dương em nghĩ là lươn thôi bác.", "Number reply": 0}]}, {"Owner": "Nguyễn Nhật Minh", "Cmt": "Thế trên iOS nên dùng app nào nhỉ bạn?", "Number reply": 0}, {"Owner": "Nguyễn Đình Nam", "Cmt": "Tải về dùng chưa đến 3p xóa luôn. Còn khướt mới bằng vanced.", "Number reply": 0}, {"Owner": "Đồng Nhựt Huy", "Cmt": "Vẫn có nhiều ứng dụng cho bình luận, thích luôn đó.", "Number reply": 0}, {"Owner": "Thắng Trương", "Cmt": "dùng RN8P không tải được yt vanced đành dời qua con này :))) đọc bài này xong xoá hẳn cmnl :>", "Number reply": 1, "Reply cmt": [{"Owner": "Hoàng Huy", "Cmt": "Thắng Trương bị thông báo tối ưu hoá MIUI à bro", "Number reply": 0}]}, {"Owner": "Phuc Nguyen", "Cmt": "Quang Lê newpipe on top, pủ dbgr ye ye", "Number reply": 1, "Reply cmt": [{"Owner": "Quang Lê", "Cmt": "Phuc Daniel pủe tubẻ sucks, newpipe on topppp", "Number reply": 0}]}, {"Owner": "Isora Hoàng", "Cmt": "Newpipe chính là app gốc nhá\nKo qc vvv mình sài hoài tận 2020", "Number reply": 5, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Isora Hoàng vai~ newpipe còn lâu hơn 😬", "Number reply": 0}, {"Owner": "Isora Hoàng", "Cmt": "Phuc Daniel ko hiểu ý bạn", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Isora Hoàng ý tôi là newpipe còn xuất hiện trước pủe trong 1 thời gian dài", "Number reply": 0}, {"Owner": "Isora Hoàng", "Cmt": "Phuc DanielPhuc Daniel newpipe là gốc puer là copy ra", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Isora Hoàng à okok\nTưởng ông nói là pủe oỉginal còn newpipe là hàng ăn cắp 😅", "Number reply": 0}]}, {"Owner": "Nguyễn Bảo Lâm", "Cmt": "Mik sài máy Vivo và hiện tại thì trên kho ứng dụng V-appstore thì Vanced tuber vẫn còn", "Number reply": 0}, {"Owner": "Sid Nguyen", "Cmt": "bên ios thì có mỗi nó dùng ngon", "Number reply": 0}, {"Owner": "Thao Phạm", "Cmt": "Tiện thì ai biết xóa hẳn cái này ko ạ? Trc cũng có 1 post dạng như này xong bảo down cái app này về. Giờ nó chạy ngầm ko xóa đc luôn", "Number reply": 5, "Reply cmt": [{"Owner": "Hoàng Chí Bằng", "Cmt": "Thao Phạm cái này dùng để đăng nhập google trong vanced mà :v không thích thì vào vanced manager xóa hẳn đi", "Number reply": 0}, {"Owner": "Hoàng Gia Bảo", "Cmt": "Thao Phạm nó là của youtube vanced mà bác", "Number reply": 0}, {"Owner": "Đặng Biên", "Cmt": "Thao Phạm máy ko root thì có cái này mới đăng nhập đc", "Number reply": 0}, {"Owner": "Hoàng Huy", "Cmt": "Thao Phạm ông ơi cái này để đăng nhập tk google mà :))) xoá đi thì chỉ xem chay thôi", "Number reply": 0}, {"Owner": "Gia Hân", "Cmt": "này bạn cài phiên bản cũ để đăng nhập là được r, tải phiên bản mới thì hiện icon như app thông thường còn phiên bản cũ thì k", "Number reply": 0}]}, {"Owner": "Trần Long Giang", "Cmt": "Mình vừa tải về trên iOS nhưng thấy app ghẻ quá nên xoá luôn, YouTube Vanced trên Android vẫn là ngon nhất", "Number reply": 0}, {"Owner": "Nam Hoàng", "Cmt": "Dùng còn dở hơn cả yt, xài được 2 hôm xóa", "Number reply": 0}, {"Owner": "Nguyễn Sang", "Cmt": "Vance vẫn là ngon nhất", "Number reply": 0}, {"Owner": "Chấm Bảo", "Cmt": "Cái ứng dụng rác vl mà lắm thg công nghệ mời xài :)", "Number reply": 0}, {"Owner": "Dương Quang Duy", "Cmt": "sao mình dùng cái này nó cứ bị lag ý 😢", "Number reply": 0}, {"Owner": "Dang Hoang", "Cmt": "vẫnnghe quảng cáo hằng ngày", "Number reply": 0}, {"Owner": "Nguyễn Hùng", "Cmt": "Dinh Thanh Huyen H mới biết là có cả puretuber luôn. Toàn dùng youtube vanced trên đt vs adblock trên máy tính :>", "Number reply": 0}, {"Owner": "Nguyễn Trường An", "Cmt": "Thế là quảng cáo vanced hay quảng cáo pure", "Number reply": 4, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Nguyễn Trường An chả quảng cáo ai cả\nĐi bóc phốt , hết", "Number reply": 0}, {"Owner": "Nguyễn Trường An", "Cmt": "Phuc Daniel ko ý là quảng cáo của pure là ngầm quảng cáo cho vancaed à", "Number reply": 0}, {"Owner": "Lê Dương", "Cmt": "Nguyễn Trường An Không, 2 cái chả liên quan gì đến nhau.\nPure từng đặt tên na ná Vanced để câu lượt tải.\nPure thuê quảng cáo ở nhiều page chia sẻ video lớn trên fb.\nPure chạy quảng cáo trên fb.\nPure chặn quảng cáo nhưng đòi mua VIP để ăn thêm.\nPure ăn trộm đổi vỏ để xài.", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Nguyễn Trường An không\nTôi chỉ đi bóc phốt hộ , còn vụ này vanced k lq", "Number reply": 0}]}, {"Owner": "Trần Hồng Quân", "Cmt": "Ios thì có mỗi nó dùng đc . Vance mà có ios thì sướng", "Number reply": 3, "Reply cmt": [{"Owner": "KhắC KiiÊn", "Cmt": "Trần Hồng Quân ko hề sài. Giao diện như qq ấy ko thèm sài. Sideload uYoutube gì của vanced cho ios, hoặc cercube... Nhiều loại mà", "Number reply": 0}, {"Owner": "Hoàng Tú", "Cmt": "Trần Hồng Quân iOS dùng surge or qx để chặn qc trên yt hoặc coi trên safari kết hợp với tiện ích vinegar", "Number reply": 0}, {"Owner": "Trần Hồng Quân", "Cmt": "Hoàng Tú cảm ơn bác nha giờ mới biết", "Number reply": 0}]}, {"Owner": "Thành Thái Nguyễn", "Cmt": "Vanced giờ có cả skip self promo ( quảng cáo của creator trong clip)", "Number reply": 0}, {"Owner": "Trần Hải", "Cmt": "YouTube vanced nó cập nhật cái xem chat khi xem video toàn màn hình. Mới đầu em thấy nó khá tiện nhưng đến khi e xem stream thì thấy cũng k tiện lắm, có cách nào để lại như cũ k ạ.", "Number reply": 2, "Reply cmt": [{"Owner": "Nam Khánh", "Cmt": "Trần Hải bấm x", "Number reply": 0}, {"Owner": "Tin Nguyen", "Cmt": "Trần Hải bấm dấu X thử coi chứ tui để bản 1.6 xài chứ ko dám up lên, hồi đó đang xài ngon tự nhiên up lên cái bị lỗi mạng ko xài đc", "Number reply": 0}]}, {"Owner": "Nhat Anh", "Cmt": "Sao cái pure tube mình tắt màng hình mà nó ko phát nhạc thế", "Number reply": 0}, {"Owner": "Lục Kim An", "Cmt": "Trước giờ dùng mỗi vanced, newpipe chỉ để tải video với trích mp3 ra :D", "Number reply": 0}, {"Owner": "Nam Khánh", "Cmt": "1 thời dùng new pipe, bây h mình dùng utube vanced cho tiện =))", "Number reply": 0}, {"Owner": "Dinh Duy Nguyen", "Cmt": "Cứ Premium là chân ái 🥰", "Number reply": 1, "Reply cmt": [{"Owner": "Kim Soái", "Cmt": "Dinh Duy Nguyen sir", "Number reply": 0}]}, {"Owner": "Hoàng Huy", "Cmt": "cheaper copy", "Number reply": 0}, {"Owner": "Dương Đức Toàn", "Cmt": "Dùng newpipe lâu sẽ nhận ra ngay pure chỉ là chiêu trò đờ bờ rờ rờ", "Number reply": 0}, {"Owner": "Trương Quan Thái", "Cmt": "Vanced mãi đỉnh", "Number reply": 0}, {"Owner": "Nguyễn Minh Trí", "Cmt": "ios thì con này khá ổn :v", "Number reply": 0}, {"Owner": "Liam Seven", "Cmt": "Phan Gia Lộc", "Number reply": 1, "Reply cmt": [{"Owner": "Phan Gia Lộc", "Cmt": "Liam Seven Youtube Vanced gần đây mới update lên bản mới, nhiều thứ nhìn lạ lạ.\nCòn cái Pure này thì a dẹp lâu rồi. 🤣", "Number reply": 0}]}, {"Owner": "Văn Đoàn", "Cmt": "Bác nào tóm tắt giúp e với 😥", "Number reply": 0}, {"Owner": "Hữu Nhânn Nguyễn", "Cmt": "Vanced yt ngon nhất mà kh biết sao kh cài đc", "Number reply": 1, "Reply cmt": [{"Owner": "Minh Phuc", "Cmt": "Hữu Nhânn Nguyễn nếu dùng xiaomi thì nên tắt tối ưu miui", "Number reply": 0}]}, {"Owner": "Thanh Huyền", "Cmt": "Thường thì cái gì càng đc pr nhiều thì càng chán.", "Number reply": 0}, {"Owner": "Hữu Phước", "Cmt": "IOS nên chỉ dùng Preminum. Android thì tải Vanced", "Number reply": 0}, {"Owner": "An Lee", "Cmt": "vanced is best:v", "Number reply": 0}, {"Owner": "Marcel Trương", "Cmt": "tải về nhưng chưa bật bao giờ. vừa xóa xong", "Number reply": 0}, {"Owner": "Truong Nguyen", "Cmt": "App như đb mà đi đâu cũng gặp quảng cáo, thua xa Drumtify hay Musi.", "Number reply": 0}, {"Owner": "Giang Giang", "Cmt": "Bạn nào xài redmi thì cứ vô ứng dụng nhạc trên máy . Nghe nhạc trên Youtube được luôn nhé không cần tải thêm app đâu", "Number reply": 6, "Reply cmt": [{"Owner": "Gia Ân", "Cmt": "Giang Giang lag lắm", "Number reply": 0}, {"Owner": "Giang Giang", "Cmt": "Gia Ân lag á sao tớ xài thấy bình thường mà nhỉ 👀", "Number reply": 0}, {"Owner": "Đào Mạnh Hoàng", "Cmt": "Giang Giang ko tắt màn dc", "Number reply": 0}, {"Owner": "Giang Giang", "Cmt": "Đào Mạnh Hoàng dược mà 👀", "Number reply": 0}, {"Owner": "Đào Mạnh Hoàng", "Cmt": "Cái Mi Video phải ko h", "Number reply": 0}, {"Owner": "Nguyễn Đình Dương", "Cmt": "Đào Mạnh Hoàng bật hộp công cụ lên", "Number reply": 0}]}, {"Owner": "Mai Anh Tuấn", "Cmt": "T thấy vanced tốt hơn newpipe chứ, hay giờ newpipe ngon rồi chưa trước chỉ dùng để down nhạc với vids", "Number reply": 0}, {"Owner": "Trần Duy Khánh", "Cmt": "Vancedapp.com luôn là chân ái 😁", "Number reply": 0}, {"Owner": "Viet Anh Vu", "Cmt": ":)) cũng sắp bay thui", "Number reply": 0}, {"Owner": "Phúc Thiên", "Cmt": "Vanced là youtube nhưng tốt hơn", "Number reply": 0}, {"Owner": "Trần Quốc Vương", "Cmt": "Vanced vẫn best nhất, mượt mà.", "Number reply": 0}, {"Owner": "Bùi Hoàng", "Cmt": "Huy Minh Bùi pro", "Number reply": 0}, {"Owner": "Huỳnh Anh Vinh", "Cmt": "Vẫn dùng YTB Pre là ổn nhất 😅", "Number reply": 0}, {"Owner": "Như Quỳnh", "Cmt": ":)))))))", "Number reply": 0}, {"Owner": "Sơn Hoàng", "Cmt": "bên android người ta xài vanced hết chứ ai xài ba cái đồ yêu này đâu, bên ios mới hot hơn, mới lên appstore tìm cái newpiper của bác có đâu mà ủng hộ chả tải mấy cái kia @@", "Number reply": 0}, {"Owner": "Vũ Đăng Hải", "Cmt": "Vấn đề là iphone, ngoài cái này ra thì chắc chỉ có chơi vs youtube premnium 🤣", "Number reply": 1, "Reply cmt": [{"Owner": "Nguyễn Khoa", "Cmt": "Vũ Đăng Hải altstore + youtube cercube", "Number reply": 0}]}, {"Owner": "Trần Phúc Hoàng Gia", "Cmt": "cái thằng pure tuber này ngu đ tả được 😃 để tự động phát để nghe nhạc, nó phát mãi 2 bài lặp đi lặp lại. recommendation thì ngu hơn youtube 1000 lần. dùng được 2 ngày dẹp luôn.", "Number reply": 1, "Reply cmt": [{"Owner": "John Wick", "Cmt": "Trần Phúc Hoàng Gia dùng cho mấy đứa newbie thì dùng bập bẹ được:) chứ vanced cứ là chân ái", "Number reply": 0}]}, {"Owner": "Ricardo Leo Sen", "Cmt": "Trước giờ toàn dùng vanced nghe nhạc, còn kiếm ra video hay thì mình vào app gốc subcribe với like rồi quay lại vanced dùng tiếp =)))", "Number reply": 0}, {"Owner": "Trịnh Gia Bảo", "Cmt": "Wait a minute!", "Number reply": 1, "Reply cmt": [{"Owner": "Phuc Nguyen", "Cmt": "Trịnh Gia Bảo xem bài viết gốc đi bro", "Number reply": 0}]}, {"Owner": "Phuc Nguyen", "Cmt": "đào lại bài vì vanced sắp khai tử , người người nhà nhà nhảy qua thằng ăn cắp", "Number reply": 2, "Reply cmt": [{"Owner": "Phạm Đức Quý", "Cmt": "Phuc Nguyen why ko nhảy qua newpipe?", "Number reply": 0}, {"Owner": "Phuc Nguyen", "Cmt": "Phạm Đức Quý thì vốn dĩ pủe nó quảng cáo rầm rộ , sau vụ này nó sẽ tung hết sức pr để đánh bóng tên tuổi và nhiều người sẽnhayr qua thằng ăn cắp ó ông", "Number reply": 0}]}]}
+{
+    "URL post": "https://touch.facebook.com/1775792036086242",
+    "Has media": true,
+    "Media": [
+        "https://m.facebook.com/photo.php?fbid=444252027382234&id=100053923216268&set=gm.1775792036086242&source=57&refid=18&__tn__=EH-R"
+    ],
+    "Content": "Phuc NguyenJ2TEAM Community\n19 tháng 2 lúc 09:42 ·\n///Bài viết của Huy Minh Bùi , reup vui lòng xin phép tác giả và ghi cre đầy đủ///\nPure Tuber và những sự lươn lẹo\nDạo gần đây Pure Tuber đang là một cái tên khá nổi. Thi thoảng vào Facebook hay Youtube lướt tí thì thấy quảng cáo của app này và theo như những gì ứng dụng quảng cáo thì Pure Tuber là một trình phát Youtube không có quảng cáo (quảng cáo phần mềm chặn quảng cáo nghe hài nhỉ...), có khả năng phát nhạc trong nền, cho phép tải video, etc. Nghe có vẻ hấp dẫn nhưng ứng dụng này khá là mập mờ và đáng nghi. Theo như một số thread trên VOZ thì ứng dụng từng tên là \"Vanced Tuber\", có vẻ như là một bait khá khôn ngoan để câu người dùng đang tìm kiếm Youtube Vanced trên Play Store. Nhưng về sau đã bị Google phát hiện và trảm, về sau đăng lên lại với cái tên Pure Tuber và thay vì tạo ra quả bait câu người dùng Youtube Vanced như trước thì nay họ sử dụng cách cổ điển hơn là... quảng cáo mọi nơi và chiêu mời người khác để ăn dịch vụ VIP ¯\\_(ツ)_/¯\nĐọc đến đấy mọi người sẽ nghĩ \"Cơ mà khoan đây là một group về FOSS mà, mang cái này nói để làm gì ???\". Well.... đây mới là vấn đề chính mình muốn nói ở đây. Đối với một số bạn chuyên tìm những app FOSS để xem Youtube, nếu nhìn vào trình phát của Pure Tuber sẽ thấy nó khá quen thuộc. Pure Tuber thực chất dựa trên Newpipe - một trình xem Youtube mã nguồn mở, từng được giới thiệu ở đây. So sánh qua trình phát video và Cài Đặt của hai ứng dụng có thể thấy rõ Pure Tuber là một bản fork của Newpipe với một số chức năng thêm vào như là đăng nhập Youtube hay bình luận, thậm chí Pure Tuber còn có hệ thống VIP nữa. Vậy... nếu dựa trên Newpipe thì chắc Pure Tuber sẽ phải ghi credit Newpipe vào đúng không ? KHÔNG HỀ. Tính đến thời điểm hiện tại (09/11/2021) trên ứng dụng Pure Tuber hay thậm chí là website chưa hề ghi bất cứ credit nào là ứng dụng đang dựa trên Newpipe (và thậm chí còn không credit các thư viện Newpipe sử dụng). Newpipe sử dụng giấy phép GPLv3 và việc Pure Tuber không ghi credit là đang vi phạm giấy phép một cách trắng trợn, không khác gì như đang ăn cắp công sức của người khác cả.\nVậy nên nếu các bạn ủng hộ, hãy ủng hộ đúng ứng dụng. Đối với một số người Pure Tuber có thể tốt hơn chút do sử dụng được dịch vụ Google, nhưng hãy suy nghĩ lại xem, với những chiêu trò lươn lẹo trong những ngày đầu của ứng dụng, cộng thêm việc vi phạm giấy phép GPL, hãy cân nhắc trước khi tải và dùng. Đối với mình thì thà tải Youtube Vanced còn hơn là dùng cái này, dữ liệu thì không chỉ Google thu mà giờ Pure Tuber cũng thu nữa thì ngu gì mà tải :))) (à mình decompile cái apk ra ngó thử thì thấy nó còn có API gì liên quan đến Facebook nữa đấy, nhờ bạn nào phân tích hộ khoản này).\nLink liên quan:\nData Security Statements của Pure Tuber : https://archive.ph/loQ5Z\nChính sách quyền riêng tư (Privacy Policy) : https://archive.ph/11uKN\nĐiều khoản và dịch vụ (ToS) : https://archive.ph/eP9Xt\nTất cả các giấy tờ trên không đề cập đến việc dựa trên Newpipe\nArchive của trang ngày 09/11 : https://archive.ph/Xfozj\nNgoài ra còn có trang trước kia họ làm Vanced Tuber : https://www.vanced.pro/\n(Snapshot ngày 20/10/2020, đặt hẳn tên là Youtube Vanced và là Newpipe bê nguyên si : https://archive.ph/IAFRk)\nLink issue Github liên quan : https://github.com/TeamNewPipe/NewPipe/issues/6395\nThread VOZ có liên quan : https://voz.vn/t/xin-app-xem-youtube-khi-tat-man-hinh-android.210892/page-8\nhttps://voz.vn/t/vanced-kit-tren-ch-play-la-hang-that-ko.237306/\n#j2team_discussion\n#j2team_report\nPs: Vụ này t biết trước ông Huy nhưng hành văn khá chán nên ông Huy viết :v với lại anh Lê Thịnh mới rì viu lại Ống Mới nên toi cũng reup bài này @@",
+    "Comment": [
+        {
+            "Owner": "Trần Tuấn Minh",
+            "Cmt": "Xem mấy post trên fb toàn quảng cáo cái này thấy xl thật sự",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Văn Hưng",
+            "Cmt": "Ngay từ cái hồi mới ra trông ỉa chảy thật sự",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Do Hoang Trung",
+            "Cmt": "tốn data",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Mạnh Hùng",
+            "Cmt": "Mình đọc cứ thấy buồn cười mà không hiểu tại sao",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Tuấn Minh",
+            "Cmt": "Cái drumify có tương tự không mọi người 🥲",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Manh Cuong Vu",
+            "Cmt": "Iphone không có cái vanced thì làm sao?",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Bảo Nguyên",
+                    "Cmt": "Manh Cuong Vu xài uyou á cũng của vanced",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trương Tùng Dương",
+                    "Cmt": "Bảo Nguyên cần jarbeak k b",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lộc",
+                    "Cmt": "Manh Cuong Vu mua android",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Bảo Nguyên",
+                    "Cmt": "Trương Tùng Dương k bn cài trên pc nha",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Xuân Hải Trần",
+            "Cmt": "mà sao cái app này vẫn chưa bị trảm tiếp nhỉ, youtube vanced còn k đưa được lên ch play :/",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Bảo Nguyên",
+                    "Cmt": "Xuân Hải Trần Youtube vanced là mod từ app gốc nên k đc đưa lên store nha mà nó có trên store từ những ngày đầu mà youtube nó đá vì sợ bị đạp đổ chén cơm thôi",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Lưu Quang Vũ",
+            "Cmt": "Muốn dùng Newpipe nhưng không xem được các playlist của kênh muốn xem 🥲",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Lưu Quang Vũ xài skytube đi có lấy mã nguồn ống mới nma ghe cre đàng hoàng với lại cũng có viết lại ui, k có chạy nền nma có chặn kênh đvowis thứ bác đang tìm đó",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lưu Quang Vũ",
+                    "Cmt": "Phuc Daniel Cái đó có gid hơn youtube vanced không bác :3",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Lưu Quang Vũ ... skytube thì k thấy chỗ pip với background nhưng bù lại có chỗ block kênh k muốn xem bro",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trung Hiếu",
+            "Cmt": "Thế giờ có nên dùng không ?",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Nông Toàn",
+                    "Cmt": "Trung Hiếu tất nhiên là k vì nó như l",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Maxwell Bennedict",
+            "Cmt": "nhưng phải nói thật :v\ntôi thấy nó xài tốt hơn Youtube Vanced :))))\nHồi trước tôi xài Vanced, muốn đăng nhập vào thì phải link với app youtube gốc. Không thể xem đc bình luận và mấy cái Live stream.\nNói chung là thà chịu khó coi quảng cáo còn hơn trải nghiệm nó bất tiện như vậy.",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoàng Chí Bằng",
+                    "Cmt": "Maxwell Bennedict vanced thì dùng cái microG là đăng nhập đc mà :v",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Bình Dương",
+                    "Cmt": "Maxwell Bennedict Vanced xài microG là đăng nhập bth mà, đọc bình luận với xem live stream bth. Có mỗi ông là nó vậy thôi =))))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đình Hiếu",
+                    "Cmt": "Maxwell Bennedict Có mỗi ô bị như vậy á :))).",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đăng Ninh",
+            "Cmt": "ôi tầm này thì dùng Vanced còn sướng gấp ngàn lần lại đi dùng một cái app đc quảng cáo? =)) đây chắc hẳn là mấy ông lên Play Store tìm Vanced khi được bảo là \"dùng Vanced đi\" =))",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Chấn Huy",
+                    "Cmt": "Đăng Ninh appstore làm gì có vanced",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đăng Ninh",
+                    "Cmt": "Chấn Huy đó chính xác là điều tôi muốn nói đó =)) mấy ổng nghĩ Google khôn lắm hay sao mà để một thằng Youtube k có quảng cáo lên cùng sân đc với cả Youtube =))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Chấn Huy",
+            "Cmt": "Cái nào xài ok thì dùng, cái khác k quan tâm lắm",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Cao Thọ",
+            "Cmt": "Dùng vanced để xem và newp để tải video",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Tien Tran",
+            "Cmt": "Musi",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hào Nguyễn",
+            "Cmt": "bảo là chặn quảng cáo nhưng chính nó lại đi spam quảng cáo =))) đ hiểu sao bảo phát nhạc dưới nền mà cứ hết 10 vid nó lại hiện quảng cáo và kêu mua",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Công Sơn",
+            "Cmt": "đọc vẫn chưa hiểu ý chủ tus lắm nhưng đại khái là mình đang xài app này và thấy nó khá tiện, vì có thể nghe trên youtube mà có thể tắt màn hình, và đặc biệt là ko ads, tiện thì dùng thôi chơ phân tích gì lắm :))",
+            "Number reply": 10,
+            "Reply cmt": [
+                {
+                    "Owner": "Quân Trần",
+                    "Cmt": "Nguyễn Công Sơn dùng vanced đi :V",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Công Sơn",
+                    "Cmt": "Quân Trần app nào chả đc, tiện thì dùng thôi, ăn nhau cái marketing nữa, thằng nào marketing tốt thì thằng đó thắng",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Nguyễn Công Sơn nói tóm lại là app pủe ăn cắp mã nguồn r lại trục lợi, nếu bác để ý thì thỉnh thoảng pủe sẽ hiện qc, và đó tất nhiên là trục lợi rồi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Nguyễn Công Sơn với lại bác nhìn cmt trên đi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Văn Dũng",
+                    "Cmt": "Phuc Daniel em dùng lâu rồi mà k hề có quảng cáo luôn đấy bác.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Lê Văn Dũng tôi thì dùng mới 5p nó hiện qc\nVới lại nghe nền nhiều hình như bị limit phải mua vip thì phải",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Văn Dũng",
+                    "Cmt": "Phuc Daniel 1 ngày tôi nghe tầm 20-25 video mà. K hề có quảng cáo. Thỉnh thoảng nó lỗi, giới hạn video phát nền, thoát ra vào lại ok ngay",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Khoa Thường",
+                    "Cmt": "Nguyễn Công Sơn t tải về vào video đầu thì k qc đến lần 2 vào bắt mình làm gì đấy mới cho load video tắt dc qc thế xóa luôn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Xuân Toàn",
+                    "Cmt": "Phuc Daniel ios chả bao giơg gặp qc gì ở app này cả. Nói chung là ngon 😂",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Duy Dong",
+                    "Cmt": "Lê Văn Dũng mình dùng cũng ko thấy qc hehe",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Nhật Long",
+            "Cmt": "Đã có thời gian tui từng thử Pure Tuber trên con Amazon Fire HD 8 mà khỏi cần phải dài dòng, Pure Tuber dùng như crap.\nThành ra cho tới bây giờ, tui vẫn dùng song song Vanced với NewPipe Legacy, vì tui vẫn thấy cả hai dùng vẫn thích hơn.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Đức Duy",
+            "Cmt": "vẫn chọn youtube vanced, nó ở đẳng cấp khác",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phạm Văn Phúc",
+            "Cmt": "Trước tạch Google service toàn dùng tạm newpipe\nCăn bản thì cũng nên phản đối, nhưng bản chất của FOSS là kiểu làm theo năng lực hưởng theo nhu cầu nên chắc k sao",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Phạm Văn Phúc tất nhiên, k phải phần mềm foss nào cũng có ông lớn tài trợ như blender dc nên toàn xin donate để duy trì thôi",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "ʚɞQuốc Tấnʚɞ",
+            "Cmt": "Điện thoại mình Android 11 không cài đc Youtube Vanced 😭",
+            "Number reply": 5,
+            "Reply cmt": [
+                {
+                    "Owner": "Trần Trung",
+                    "Cmt": "ʚɞQuốc Tấnʚɞ tắt tối ưu đi là đc",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trung",
+                    "Cmt": "ʚɞQuốc Tấnʚɞ t android 11 đây",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đức Kiên",
+                    "Cmt": "ʚɞQuốc Tấnʚɞ đây bác, dùng ngon =))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "ʚɞQuốc Tấnʚɞ",
+                    "Cmt": "Nguyễn Đức Kiên Ủa sao cài được hay z. Chưa biết cách fix😹",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đức Kiên",
+                    "Cmt": "ʚɞQuốc Tấnʚɞ thì cứ cài cái Vanced manager về trước để down mấy cái kia là xong thôi mà 🧐",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Bùi Hùng",
+            "Cmt": "T vẫn đang dùng vanced, best choise ever",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Andrey Shevchenko",
+            "Cmt": "Mình cũng đang dùng pure và chỉ thấy quảng cáo mời bạn để lên vip lúc mở app, sau đó k thấy và cũng k thấy quảng cáo nào về nó trên facebook luôn",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Andrey Shevchenko trên các page anh da đen da vàng gì đấy lục tầm t11 t10 là thấy, giờ ít pr rầm rộ lại r",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Thắng Phạm",
+            "Cmt": "Tui xài vanced và thấy ổn, k có ý định trải nghiệm cái này @@",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Gia Linh",
+            "Cmt": "Vanced mãi đỉnh:))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Việt Phạm",
+            "Cmt": "Đã dùng 1 lần và xóa. 2s lại load video 1 cái bực mình",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trường Lâm",
+            "Cmt": "bác nào dùng ios cho em hỏi là dùng app nào thay YT được không ạ, đang ở bên android dùng vanced sướng vãi đạn mà giờ qua hệ sinh thái này YT qc ầm ầm khó chịu quá :v",
+            "Number reply": 14,
+            "Reply cmt": [
+                {
+                    "Owner": "Thọ",
+                    "Cmt": "Trường Lâm Có pc thì bạn thử tìm cách cài uyou+ đi nó cũng do team vanced làm\nBất tiện mỗi cái hết chứng chỉ lại phải cắm cài lại",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đình Chương",
+                    "Cmt": "Trường Lâm Làm cái acc youtube premium. Tháng 10k",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trường Lâm",
+                    "Cmt": "Nguyễn Đình Chương ồi em nghèo em ms xin cách dùng cái nào như vanced chứ tiền nhiều em đã cười khẩy vào cmt \"Yt premium đọc rồi đi ra\" :)))))))))))))))))))))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trường Lâm",
+                    "Cmt": "Thọ thanks bro, nghe hơi lằng nhằng nhể, làm tôi muốn quay về vs android :)))))))))), trước dùng app crack còn nhiều hơn app tải từ ch play về",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Thọ",
+                    "Cmt": "Trường Lâm hơi lằng nhằng thật nhưng các tính năng y như premium vậy",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trường Lâm",
+                    "Cmt": "Thọ cảm ơn bro nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Bình Trần",
+                    "Cmt": "Trường Lâm Mình đang dùng app Ture Browser Pro khác ổn, có thể mua phiên bản đầy đủ trong ứng dụng:\n\nhttps://apps.apple.com/vn/app/tube-browser-pro/id1552700862?l=vi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Khải Sky",
+                    "Cmt": "Trường Lâm dùng bản quyền thôi bạn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trần M. Dũng",
+                    "Cmt": "Trường Lâm Musi á bạn\nCái này cho phép phát nhạc trên nền khi tắt điện thoại cũng phát. Thi thoảng quảng cáo 5s đầu video thôi còn khi đã phát thì nó chặn hết qc á",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trường Lâm",
+                    "Cmt": "khổ nỗi tôi nghèo thôi chứ có tiền là tôi cũng khoe như bro :))))))))",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trường Lâm",
+                    "Cmt": "Trần M. Dũng nghe hay nhề, để tôi test thử nhé",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trần M. Dũng",
+                    "Cmt": "Trường Lâm đúng á bạn tôi nge 2 tiếng khong có cái quảng cáo nào 😅😅 phát trên nền đc bạn cứ trải nghiệm 😅",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Tiến",
+                    "Cmt": "Trường Lâm iOS thì thấy ngoài PureTuber thì chưa có cái nào dễ cho user bt cả, mình là người dùng bt thấy cái dễ nhất thì dùng thôi.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Xuân Toàn",
+                    "Cmt": "Thọ nếu không lầm thì uyou+ không phải của team vanced làm, mà là dev của cộng đồng jaibreak làm ra thôi, còn team vanced chỉ là khuyến khích, quảng cáo người dùng ios dùng thôi.",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Phuc Nguyen",
+            "Cmt": "https://www.facebook.com/groups/fossvietnam/permalink/931173787794979/?app=fbl đây là bài viết gốc, ông nào có hứng với FOSS thì nên ghé qua group đó",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Kết Nguyễn",
+            "Cmt": "Cái này chặn quảng cáo nhưng vẫn có quảng cáo, vanced mãi đỉnh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Xuân Cảnh",
+            "Cmt": "iOS thì sao các bạn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Đinh Hải",
+            "Cmt": "thì ra là cái app của lão này =)) combat với ae voz cả chục page",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Đinh Hải từ cái lúc nó qc rầm rộ là t nghi nó là do thằng nào ở vn đi ăn cắp rồi)=))))",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Đạt",
+            "Cmt": "Vanced thì sao?\nMãi đỉnh, mãi đỉnh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phuc Nguyen",
+            "Cmt": "Thành Long Đệ Tam pủe 😵",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phúc",
+            "Cmt": "Giờ thêm chức năng tải xuống mọi định dạng nữa là bá chủ được rồi\nNhưng đời đời vẫn không thể lên được CH Play <(\")",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Đức Toàn",
+            "Cmt": "Vanced giờ còn hiện cả dislike ạ, thích vl =))",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyễn Huy Hoàng",
+                    "Cmt": "Nguyễn Đức Toàn sao e tìm trên chplay ko thấy nhỉ?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Mạnh Thời",
+                    "Cmt": "Nguyễn Huy Hoàng trên CH Play làm gì có đâu b =))\nLên trang chủ n mà down về https://vancedapp.com/",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hà Lê",
+                    "Cmt": "Nguyễn Huy Hoàng Và xem cả bài viết của mình trong nhóm để biết cách bật, hehe.\n\n(Quảng cáo chút)",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Anh Quan",
+            "Cmt": "Vanced ngon nhất rồi 😆",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Híu Hữu",
+            "Cmt": "+1 vanced",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Takahashi Moriyasu",
+            "Cmt": "Thằng cc này t chưa bao giờ xài luôn, Vanced ổn nhất rồi 🤣",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phạm Tuấn Anh",
+            "Cmt": "A em cho hỏi sao google lại cấp phép cho các app trong bài viết hoạt động nhỉ, nó ảnh hưởng trực tiếp đến google mà ?",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Đồng Nhựt Huy",
+                    "Cmt": "Phạm Tuấn Anh Quảng cáo ngầm.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Andrey Shevchenko",
+                    "Cmt": "Phạm Tuấn Anh chắc kiểu chống độc quyền đó bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Vũ Bình Dương",
+                    "Cmt": "Phạm Tuấn Anh Theo như dev của youtube nói thì google ko có đủ cơ sở pháp lý để đánh sập mấy cái app này",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Quang",
+                    "Cmt": "Vũ Bình Dương em nghĩ là lươn thôi bác.",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Nhật Minh",
+            "Cmt": "Thế trên iOS nên dùng app nào nhỉ bạn?",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Đình Nam",
+            "Cmt": "Tải về dùng chưa đến 3p xóa luôn. Còn khướt mới bằng vanced.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Đồng Nhựt Huy",
+            "Cmt": "Vẫn có nhiều ứng dụng cho bình luận, thích luôn đó.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Thắng Trương",
+            "Cmt": "dùng RN8P không tải được yt vanced đành dời qua con này :))) đọc bài này xong xoá hẳn cmnl :>",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoàng Huy",
+                    "Cmt": "Thắng Trương bị thông báo tối ưu hoá MIUI à bro",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Phuc Nguyen",
+            "Cmt": "Quang Lê newpipe on top, pủ dbgr ye ye",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Quang Lê",
+                    "Cmt": "Phuc Daniel pủe tubẻ sucks, newpipe on topppp",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Isora Hoàng",
+            "Cmt": "Newpipe chính là app gốc nhá\nKo qc vvv mình sài hoài tận 2020",
+            "Number reply": 5,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Isora Hoàng vai~ newpipe còn lâu hơn 😬",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Isora Hoàng",
+                    "Cmt": "Phuc Daniel ko hiểu ý bạn",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Isora Hoàng ý tôi là newpipe còn xuất hiện trước pủe trong 1 thời gian dài",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Isora Hoàng",
+                    "Cmt": "Phuc DanielPhuc Daniel newpipe là gốc puer là copy ra",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Isora Hoàng à okok\nTưởng ông nói là pủe oỉginal còn newpipe là hàng ăn cắp 😅",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nguyễn Bảo Lâm",
+            "Cmt": "Mik sài máy Vivo và hiện tại thì trên kho ứng dụng V-appstore thì Vanced tuber vẫn còn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Sid Nguyen",
+            "Cmt": "bên ios thì có mỗi nó dùng ngon",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Thao Phạm",
+            "Cmt": "Tiện thì ai biết xóa hẳn cái này ko ạ? Trc cũng có 1 post dạng như này xong bảo down cái app này về. Giờ nó chạy ngầm ko xóa đc luôn",
+            "Number reply": 5,
+            "Reply cmt": [
+                {
+                    "Owner": "Hoàng Chí Bằng",
+                    "Cmt": "Thao Phạm cái này dùng để đăng nhập google trong vanced mà :v không thích thì vào vanced manager xóa hẳn đi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Gia Bảo",
+                    "Cmt": "Thao Phạm nó là của youtube vanced mà bác",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đặng Biên",
+                    "Cmt": "Thao Phạm máy ko root thì có cái này mới đăng nhập đc",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Huy",
+                    "Cmt": "Thao Phạm ông ơi cái này để đăng nhập tk google mà :))) xoá đi thì chỉ xem chay thôi",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Gia Hân",
+                    "Cmt": "này bạn cài phiên bản cũ để đăng nhập là được r, tải phiên bản mới thì hiện icon như app thông thường còn phiên bản cũ thì k",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trần Long Giang",
+            "Cmt": "Mình vừa tải về trên iOS nhưng thấy app ghẻ quá nên xoá luôn, YouTube Vanced trên Android vẫn là ngon nhất",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nam Hoàng",
+            "Cmt": "Dùng còn dở hơn cả yt, xài được 2 hôm xóa",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Sang",
+            "Cmt": "Vance vẫn là ngon nhất",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Chấm Bảo",
+            "Cmt": "Cái ứng dụng rác vl mà lắm thg công nghệ mời xài :)",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dương Quang Duy",
+            "Cmt": "sao mình dùng cái này nó cứ bị lag ý 😢",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dang Hoang",
+            "Cmt": "vẫnnghe quảng cáo hằng ngày",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Hùng",
+            "Cmt": "Dinh Thanh Huyen H mới biết là có cả puretuber luôn. Toàn dùng youtube vanced trên đt vs adblock trên máy tính :>",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Trường An",
+            "Cmt": "Thế là quảng cáo vanced hay quảng cáo pure",
+            "Number reply": 4,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Nguyễn Trường An chả quảng cáo ai cả\nĐi bóc phốt , hết",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Trường An",
+                    "Cmt": "Phuc Daniel ko ý là quảng cáo của pure là ngầm quảng cáo cho vancaed à",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Lê Dương",
+                    "Cmt": "Nguyễn Trường An Không, 2 cái chả liên quan gì đến nhau.\nPure từng đặt tên na ná Vanced để câu lượt tải.\nPure thuê quảng cáo ở nhiều page chia sẻ video lớn trên fb.\nPure chạy quảng cáo trên fb.\nPure chặn quảng cáo nhưng đòi mua VIP để ăn thêm.\nPure ăn trộm đổi vỏ để xài.",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Nguyễn Trường An không\nTôi chỉ đi bóc phốt hộ , còn vụ này vanced k lq",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trần Hồng Quân",
+            "Cmt": "Ios thì có mỗi nó dùng đc . Vance mà có ios thì sướng",
+            "Number reply": 3,
+            "Reply cmt": [
+                {
+                    "Owner": "KhắC KiiÊn",
+                    "Cmt": "Trần Hồng Quân ko hề sài. Giao diện như qq ấy ko thèm sài. Sideload uYoutube gì của vanced cho ios, hoặc cercube... Nhiều loại mà",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Hoàng Tú",
+                    "Cmt": "Trần Hồng Quân iOS dùng surge or qx để chặn qc trên yt hoặc coi trên safari kết hợp với tiện ích vinegar",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Trần Hồng Quân",
+                    "Cmt": "Hoàng Tú cảm ơn bác nha giờ mới biết",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Thành Thái Nguyễn",
+            "Cmt": "Vanced giờ có cả skip self promo ( quảng cáo của creator trong clip)",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Hải",
+            "Cmt": "YouTube vanced nó cập nhật cái xem chat khi xem video toàn màn hình. Mới đầu em thấy nó khá tiện nhưng đến khi e xem stream thì thấy cũng k tiện lắm, có cách nào để lại như cũ k ạ.",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Nam Khánh",
+                    "Cmt": "Trần Hải bấm x",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Tin Nguyen",
+                    "Cmt": "Trần Hải bấm dấu X thử coi chứ tui để bản 1.6 xài chứ ko dám up lên, hồi đó đang xài ngon tự nhiên up lên cái bị lỗi mạng ko xài đc",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Nhat Anh",
+            "Cmt": "Sao cái pure tube mình tắt màng hình mà nó ko phát nhạc thế",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Lục Kim An",
+            "Cmt": "Trước giờ dùng mỗi vanced, newpipe chỉ để tải video với trích mp3 ra :D",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nam Khánh",
+            "Cmt": "1 thời dùng new pipe, bây h mình dùng utube vanced cho tiện =))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dinh Duy Nguyen",
+            "Cmt": "Cứ Premium là chân ái 🥰",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Kim Soái",
+                    "Cmt": "Dinh Duy Nguyen sir",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Hoàng Huy",
+            "Cmt": "cheaper copy",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Dương Đức Toàn",
+            "Cmt": "Dùng newpipe lâu sẽ nhận ra ngay pure chỉ là chiêu trò đờ bờ rờ rờ",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trương Quan Thái",
+            "Cmt": "Vanced mãi đỉnh",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Nguyễn Minh Trí",
+            "Cmt": "ios thì con này khá ổn :v",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Liam Seven",
+            "Cmt": "Phan Gia Lộc",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Phan Gia Lộc",
+                    "Cmt": "Liam Seven Youtube Vanced gần đây mới update lên bản mới, nhiều thứ nhìn lạ lạ.\nCòn cái Pure này thì a dẹp lâu rồi. 🤣",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Văn Đoàn",
+            "Cmt": "Bác nào tóm tắt giúp e với 😥",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hữu Nhânn Nguyễn",
+            "Cmt": "Vanced yt ngon nhất mà kh biết sao kh cài đc",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Minh Phuc",
+                    "Cmt": "Hữu Nhânn Nguyễn nếu dùng xiaomi thì nên tắt tối ưu miui",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Thanh Huyền",
+            "Cmt": "Thường thì cái gì càng đc pr nhiều thì càng chán.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Hữu Phước",
+            "Cmt": "IOS nên chỉ dùng Preminum. Android thì tải Vanced",
+            "Number reply": 0
+        },
+        {
+            "Owner": "An Lee",
+            "Cmt": "vanced is best:v",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Marcel Trương",
+            "Cmt": "tải về nhưng chưa bật bao giờ. vừa xóa xong",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Truong Nguyen",
+            "Cmt": "App như đb mà đi đâu cũng gặp quảng cáo, thua xa Drumtify hay Musi.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Giang Giang",
+            "Cmt": "Bạn nào xài redmi thì cứ vô ứng dụng nhạc trên máy . Nghe nhạc trên Youtube được luôn nhé không cần tải thêm app đâu",
+            "Number reply": 6,
+            "Reply cmt": [
+                {
+                    "Owner": "Gia Ân",
+                    "Cmt": "Giang Giang lag lắm",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Giang Giang",
+                    "Cmt": "Gia Ân lag á sao tớ xài thấy bình thường mà nhỉ 👀",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đào Mạnh Hoàng",
+                    "Cmt": "Giang Giang ko tắt màn dc",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Giang Giang",
+                    "Cmt": "Đào Mạnh Hoàng dược mà 👀",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Đào Mạnh Hoàng",
+                    "Cmt": "Cái Mi Video phải ko h",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Nguyễn Đình Dương",
+                    "Cmt": "Đào Mạnh Hoàng bật hộp công cụ lên",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Mai Anh Tuấn",
+            "Cmt": "T thấy vanced tốt hơn newpipe chứ, hay giờ newpipe ngon rồi chưa trước chỉ dùng để down nhạc với vids",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Duy Khánh",
+            "Cmt": "Vancedapp.com luôn là chân ái 😁",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Viet Anh Vu",
+            "Cmt": ":)) cũng sắp bay thui",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Phúc Thiên",
+            "Cmt": "Vanced là youtube nhưng tốt hơn",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trần Quốc Vương",
+            "Cmt": "Vanced vẫn best nhất, mượt mà.",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Bùi Hoàng",
+            "Cmt": "Huy Minh Bùi pro",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Huỳnh Anh Vinh",
+            "Cmt": "Vẫn dùng YTB Pre là ổn nhất 😅",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Như Quỳnh",
+            "Cmt": ":)))))))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Sơn Hoàng",
+            "Cmt": "bên android người ta xài vanced hết chứ ai xài ba cái đồ yêu này đâu, bên ios mới hot hơn, mới lên appstore tìm cái newpiper của bác có đâu mà ủng hộ chả tải mấy cái kia @@",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Vũ Đăng Hải",
+            "Cmt": "Vấn đề là iphone, ngoài cái này ra thì chắc chỉ có chơi vs youtube premnium 🤣",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Nguyễn Khoa",
+                    "Cmt": "Vũ Đăng Hải altstore + youtube cercube",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Trần Phúc Hoàng Gia",
+            "Cmt": "cái thằng pure tuber này ngu đ tả được 😃 để tự động phát để nghe nhạc, nó phát mãi 2 bài lặp đi lặp lại. recommendation thì ngu hơn youtube 1000 lần. dùng được 2 ngày dẹp luôn.",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "John Wick",
+                    "Cmt": "Trần Phúc Hoàng Gia dùng cho mấy đứa newbie thì dùng bập bẹ được:) chứ vanced cứ là chân ái",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Ricardo Leo Sen",
+            "Cmt": "Trước giờ toàn dùng vanced nghe nhạc, còn kiếm ra video hay thì mình vào app gốc subcribe với like rồi quay lại vanced dùng tiếp =)))",
+            "Number reply": 0
+        },
+        {
+            "Owner": "Trịnh Gia Bảo",
+            "Cmt": "Wait a minute!",
+            "Number reply": 1,
+            "Reply cmt": [
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Trịnh Gia Bảo xem bài viết gốc đi bro",
+                    "Number reply": 0
+                }
+            ]
+        },
+        {
+            "Owner": "Phuc Nguyen",
+            "Cmt": "đào lại bài vì vanced sắp khai tử , người người nhà nhà nhảy qua thằng ăn cắp",
+            "Number reply": 2,
+            "Reply cmt": [
+                {
+                    "Owner": "Phạm Đức Quý",
+                    "Cmt": "Phuc Nguyen why ko nhảy qua newpipe?",
+                    "Number reply": 0
+                },
+                {
+                    "Owner": "Phuc Nguyen",
+                    "Cmt": "Phạm Đức Quý thì vốn dĩ pủe nó quảng cáo rầm rộ , sau vụ này nó sẽ tung hết sức pr để đánh bóng tên tuổi và nhiều người sẽnhayr qua thằng ăn cắp ó ông",
+                    "Number reply": 0
+                }
+            ]
+        }
+    ]
+}
