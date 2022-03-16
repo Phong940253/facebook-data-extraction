@@ -242,7 +242,7 @@ def getPoster(driver, postId):
         contentPosts = ""
         try:
             contentPosts = driver.find_element_by_css_selector(
-                '._5rgr.async_like')
+                '._5rgt._5nk5')
         except Exception as e:
             print(e)
 
