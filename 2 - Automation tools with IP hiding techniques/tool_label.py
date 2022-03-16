@@ -5,10 +5,14 @@ import pandas as pd
 
 # Lấy các file json từ folder rawData
 
+folderPattern = "*"
+fileNamePattern = "*"
+
 
 def getFile():
-    groupPost = glob.glob("rawData/*/*/*.json")
-    pagePost = glob.glob("rawData/*/*.json")
+    groupPost = glob.glob(
+        f"rawData/groups/{folderPattern}/{fileNamePattern}.json")
+    pagePost = glob.glob(f"rawData/{folderPattern}/{fileNamePattern}.json")
     return groupPost + pagePost
 
 # Dán nhãn
