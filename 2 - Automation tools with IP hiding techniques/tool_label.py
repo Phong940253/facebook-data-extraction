@@ -6,12 +6,10 @@ import pandas as pd
 # Lấy các file json từ folder rawData
 
 
-# def getFile():
-#     listFile = []
-#     for root, directories, files in os.walk('rawData', topdown=False):
-#         for name in files:
-#             listFile.append(os.path.join(root, name))
-#     return listFile
+def getFile():
+    groupPost = glob.glob("rawData/*/*/*.json")
+    pagePost = glob.glob("rawData/*/*.json")
+    return groupPost + pagePost
 
 # Dán nhãn
 
@@ -79,11 +77,22 @@ def cleanData(filePath):
 
 # filePath = 'rawData/groups/364997627165697/1786546065010839.json'
 # print(cleanData(filePath))
-groupPost = glob.glob("rawData/*/*/*.json")
-pagePost = glob.glob("rawData/*/*.json")
-listFile = groupPost + pagePost
+
+labeledFiles = glob.glob("data/*.csv")
+labeledFileNames = []
+for labeledFile in labeledFiles:
+    labeledFileNames.append(labeledFile.split("\\")[-1].split(".")[0])
+
+
+listFile = getFile()
 
 for filePath in listFile:
+    fileName = filePath.split("\\")[-1].split(".")[0]
+    print(fileName)
+    print(labeledFileNames)
+    if fileName in labeledFileNames:
+        continue
+
     df = pd.DataFrame(
         cleanData(filePath),
         columns=[
@@ -92,7 +101,7 @@ for filePath in listFile:
             'Comment',
             'Label'])
     print(df)
-    fileName = filePath.split("\\")[-2]
+    fileName = filePath.split("\\")[-1].split(".")[0]
     # print(fileName)
     # Lưu trong folder data
     # if not os.path.exists(f'data/{page}'):
