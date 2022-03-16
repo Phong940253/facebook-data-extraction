@@ -24,7 +24,10 @@ driver = initDriver(headless=False, usingProfile=True)
 # sleep(5)
 
 namePage = [
-    'groups/364997627165697',
+    # 'groups/364997627165697',
+    'hhsb.vn',
+    'daiphatthanh.sound',
+    'SGCT1',
     'nhung.truyen.ngan.hay',
     'danphunhuantphcm',
     'nhatky',
