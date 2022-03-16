@@ -368,15 +368,26 @@ def Scroll(driver, maxScroll):
         numScroll += 1
 
 
-def getPostIds(driver):
+def getPostIds(driver, type="PAGE"):
     allPostIds = []
     Scroll(driver, maxScroll)
     sleep(sleepTime)
-    shareBtn = driver.find_elements_by_xpath(
-        '//a[contains(@href, "/sharer.php")]')
-    if (len(shareBtn)):
-        for link in shareBtn:
-            postId = link.get_attribute('href').split('sid=')[1].split('&')[0]
+    if type == "GROUP":
+        post = driver.find_elements_by_xpath(
+            '//a[contains(@href, "/sharer.php")]')
+    else:
+        post = driver.find_elements_by_css_selector('article')
+    if (len(post)):
+        for link in post:
+
+            if type == "GROUP":
+                postId = link.get_attribute('href').split('sid=')[
+                    1].split('&')[0]
+            else:
+                print(link.get_attribute('data-store').split('post_id')
+                      [-1].split(',')[0].split(':')[-1])
+                postId = link.get_attribute(
+                    'data-store').split('post_id')[-1].split(',')[0].split(':')[-1]
             if postId not in allPostIds:
                 # print(postId)
                 allPostIds.append(postId)
@@ -385,4 +396,6 @@ def getPostIds(driver):
 
 def getnumOfPost(driver, pageId):
     driver.get("https://touch.facebook.com/" + pageId)
-    return getPostIds(driver)
+    if "groups" in pageId:
+        return getPostIds(driver, "GROUP")
+    return getPostIds(driver, "PAGE")
