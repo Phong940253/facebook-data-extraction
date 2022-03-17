@@ -5,7 +5,7 @@ import pandas as pd
 
 # Lấy các file json từ folder rawData
 
-folderPattern = "*"
+folderPattern = "nhatky"
 fileNamePattern = "*"
 
 
@@ -110,4 +110,6 @@ for filePath in listFile:
     # Lưu trong folder data
     # if not os.path.exists(f'data/{page}'):
     #     os.makedirs(f'data/{page}')
+    if not os.path.exists(f'data'):
+        os.makedirs(f'data')
     df.to_csv(f"./data/{fileName}.csv", encoding='utf-8', index=False)
