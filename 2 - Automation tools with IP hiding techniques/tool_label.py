@@ -6,7 +6,7 @@ import pandas as pd
 # Lấy các file json từ folder rawData
 
 folderPattern = "nhatky"
-fileNamePattern = "*"
+fileNamePattern = "1384477302070969"
 
 
 def getFile():
@@ -105,7 +105,11 @@ for filePath in listFile:
             'Comment',
             'Label'])
     print(df)
-    fileName = filePath.split("\\")[-1].split(".")[0]
+    if "/" in filePath:
+        fileName = filePath.split("/")[-1].split(".")[0]
+    else:
+        fileName = filePath.split("\\")[-1].split(".")[0]
+    # print(fileName, filePath)
     # print(fileName)
     # Lưu trong folder data
     # if not os.path.exists(f'data/{page}'):
