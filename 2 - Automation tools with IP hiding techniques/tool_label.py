@@ -105,10 +105,10 @@ for filePath in listFile:
             'Comment',
             'Label'])
     print(df)
-    if "/" in filePath:
-        fileName = filePath.split("/")[-1].split(".")[0]
-    else:
+    if "\\" in filePath:
         fileName = filePath.split("\\")[-1].split(".")[0]
+    else:
+        fileName = filePath.split("/")[-1].split(".")[0]
     # print(fileName, filePath)
     # print(fileName)
     # Lưu trong folder data
