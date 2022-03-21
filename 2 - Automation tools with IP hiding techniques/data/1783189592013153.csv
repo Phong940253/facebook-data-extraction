@@ -1,0 +1,13 @@
+Poster,Pre-Comment,Comment,Label
+"Chào mọi người chúc mọi người một ngày vui vẻ. Hôm nay mình muốn chia sẻ một phương pháp distributed cache.
+Caching là một kỹ thuật được sử dụng để tăng tải của hệ thống.
+Tuy nhiên trong hệ thống phân tán thì chúng ta cần có một cách để distributed cache cho các service. Một cách thường được sử dụng là sử dụng các in-mem database như :redis, memcache,...
+Trong hệ thống có tải cao việc thường xuyển request lên redis để lấy giá trị mới nhất của cache sẽ rất tốn tài nguyên và gây chậm hệ thống xuống.
+Hôm nay sau khi đã âm tính với covid mình xin chia sẻ một cách để giúp mọi người thực hiện distributed cache mà không cần dựa vào các in-mem data cho mang đến tốc độ nhanh nhất cho hệ thống của bạn.
+Nếu áp dụng được mình xin 1 sao github nhé. #distributed #cache #j2team_share #j2team_tutorial",,Hay quá c ơiii,1
+"Chào mọi người chúc mọi người một ngày vui vẻ. Hôm nay mình muốn chia sẻ một phương pháp distributed cache.
+Caching là một kỹ thuật được sử dụng để tăng tải của hệ thống.
+Tuy nhiên trong hệ thống phân tán thì chúng ta cần có một cách để distributed cache cho các service. Một cách thường được sử dụng là sử dụng các in-mem database như :redis, memcache,...
+Trong hệ thống có tải cao việc thường xuyển request lên redis để lấy giá trị mới nhất của cache sẽ rất tốn tài nguyên và gây chậm hệ thống xuống.
+Hôm nay sau khi đã âm tính với covid mình xin chia sẻ một cách để giúp mọi người thực hiện distributed cache mà không cần dựa vào các in-mem data cho mang đến tốc độ nhanh nhất cho hệ thống của bạn.
+Nếu áp dụng được mình xin 1 sao github nhé. #distributed #cache #j2team_share #j2team_tutorial",,link github https://github.com/trandem/blog,1

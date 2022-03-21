@@ -7,7 +7,7 @@ import pandas as pd
 
 folderPattern = "364997627165697"
 fileNamePattern = "*"
-check_point = "1778607179138061"
+check_point = "1784137511918361"
 
 
 def getFile():
@@ -132,4 +132,4 @@ for i in range(check_point_index, len(listFile)):
     #     os.makedirs(f'data/{page}')
     # if not os.path.exists(f'data'):
     #     os.makedirs(f'data')
-    # df.to_csv(f"./data/{fileName}.csv", encoding='utf-8', index=False)
+    df.to_csv(f"./data/{fileName}.csv", encoding='utf-8', index=False)
