@@ -8,7 +8,7 @@ import pandas as pd
 folderPattern = "364997627165697"
 fileNamePattern = "*"
 # Bỏ ID vào đây để lần sau chạy tiếp từ đây
-check_point = "1785138865151559"
+check_point = "1790944697904309"
 
 
 def getFile():
@@ -50,9 +50,9 @@ def assignLabel(Content, Pre_Cmt, Cmt, Id_Post, number_current_post, number_all_
                 ENDC +
                 "\n")
             print(cmt)
-    print(WARNING + "=" * 10 + "Comment" + "=" * 10 + ENDC + "\n")
+    print(OKBLUE + "=" * 10 + "Comment" + "=" * 10 + ENDC + "\n")
     print(Cmt)
-    print(WARNING + "=" * 10 + ENDC + "\n")
+    print(WARNING + "=" * 20 + ENDC + "\n")
     print("Comment này phù hợp hay không phù hợp ?")
     cmtLabel = input("1 = Phù hợp, 0 = Không phù hợp: ")
     os.system('cls')
