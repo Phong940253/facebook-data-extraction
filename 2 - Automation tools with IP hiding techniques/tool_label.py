@@ -8,7 +8,7 @@ import pandas as pd
 folderPattern = "364997627165697"
 fileNamePattern = "*"
 # Bỏ ID vào đây để lần sau chạy tiếp từ đây
-check_point = "1790944697904309"
+check_point = "1792680164397429"
 
 
 def getFile():
@@ -107,7 +107,7 @@ listFile = getFile()
 check_point_index = listFile.index(
     f"rawData/groups/{folderPattern}\{check_point}.json")
 # check_point_index=0
-for i in range(check_point_index, len(listFile)):
+for i in range(check_point_index, len(listFile)-20):
     fileName = listFile[i].split("\\")[-1].split(".")[0]
     print(fileName)
     print(labeledFileNames)
