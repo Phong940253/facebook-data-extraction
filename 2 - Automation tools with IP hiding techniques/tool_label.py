@@ -107,7 +107,8 @@ listFile = getFile()
 check_point_index = listFile.index(
     f"rawData/groups/{folderPattern}\{check_point}.json")
 # check_point_index=0
-for i in range(check_point_index, len(listFile)-20):
+total_post = len(listFile)-20
+for i in range(check_point_index, total_post):
     fileName = listFile[i].split("\\")[-1].split(".")[0]
     print(fileName)
     print(labeledFileNames)
@@ -115,7 +116,7 @@ for i in range(check_point_index, len(listFile)-20):
         continue
 
     df = pd.DataFrame(
-        cleanData(listFile[i], fileName, i, len(listFile)),
+        cleanData(listFile[i], fileName, i, total_post),
         columns=[
             'Poster',
             'Pre-Comment',
