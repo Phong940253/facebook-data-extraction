@@ -8,7 +8,7 @@ import pandas as pd
 folderPattern = "364997627165697"
 fileNamePattern = "*"
 # Bỏ ID vào đây để lần sau chạy tiếp từ đây
-check_point = "1792680164397429"
+check_point = "1793165277682251"
 
 
 def getFile():
